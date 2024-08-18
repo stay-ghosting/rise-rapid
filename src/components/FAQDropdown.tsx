@@ -4,7 +4,7 @@ interface FAQProps {
   title: string;
 }
 
-const FAQ: React.FC<FAQProps> = ({title}) => {
+const FAQDropdown: React.FC<FAQProps> = ({title}) => {
     return (
       <div className="flex justify-between">
         <p className="">{title}</p>
@@ -13,4 +13,4 @@ const FAQ: React.FC<FAQProps> = ({title}) => {
     );
 };
 
-export default FAQ;
+export default FAQDropdown;

@@ -8,6 +8,12 @@ body {
 
 }
 
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #252422;
+}
+
 h2 {
   font-size: 2.25rem;
   font-weight: 700;
@@ -16,5 +22,6 @@ h2 {
 
 p {
   font-size: 1rem;
+  line-height: 200%;
   color: #3F3D39;
 }
