@@ -21,6 +21,8 @@ const socialIcons = [
 ];
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
   return (
     <div className='bg-[#151515] pb-6 flex flex-col items-center px-16'>
       <ul className='flex space-x-[5rem] text-white font-extralight mt-16'>
@@ -55,8 +57,8 @@ const Footer = () => {
         </div>
         <div className='w-[36rem] relative'>
           <form action=''>
-          <input type="image" src={icon_submitArrow} className="cursor-pointer absolute right-4 top-4" />
-            <InputField id='email' name='email' type='email' placeholder='Your email address' autoComplete='email' />
+            <input type='image' src={icon_submitArrow} className='cursor-pointer p-[1rem] absolute right-2 top-2' />
+            <InputField fieldValue={email} setFieldValue={(name, value) => setEmail(value)} id='email' name='email' type='email' placeholder='Your email address' autoComplete='email' />
           </form>
         </div>
       </div>
