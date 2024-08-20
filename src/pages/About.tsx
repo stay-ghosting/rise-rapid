@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import LargeLogo from "../components/LargeLogo";
-import Navbar from "../components/Navbar";
+import Navbar from "../sections/Navbar";
 import GetInTouchSection from "../sections/GetInTouchSection";
 
 import image_meetUs from "../assets/images/about us/meet us.jpeg";

@@ -1,5 +1,5 @@
 import FAQDropdown from "../components/FAQDropdown";
-import SmallResponsiveSection from "../components/SmallResponsiveSection";
+import SmallResponsiveSection from "./SmallResponsiveSection";
 
 interface FAQSectionProps {
   inView: boolean;

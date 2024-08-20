@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SmallResponsiveSection from "../components/SmallResponsiveSection";
+import SmallResponsiveSection from "./SmallResponsiveSection";
 import InputField from "../components/InputField";
 import Dropdown from "../components/InputDropdown";
 import RadioButtons from "../components/RadioButtons";

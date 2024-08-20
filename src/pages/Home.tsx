@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../sections/Navbar";
 import image_Hero from "../assets/images/hero image.png";
 
 // import icon_arrow from "../assets/icons/arrow.svg";
@@ -12,7 +12,7 @@ import GetInTouchSection from "../sections/GetInTouchSection";
 
 import { useState } from "react";
 import CtaButton from "../components/CtaButton";
-import ResponsiveSection from "../components/ResponsiveSection";
+import ResponsiveSection from "../sections/ResponsiveSection";
 import useInView from "../hooks/useInView";
 
 const steps = [

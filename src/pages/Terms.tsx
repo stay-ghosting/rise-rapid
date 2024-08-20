@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import LargeLogo from "../components/LargeLogo";
-import Navbar from "../components/Navbar";
+import Navbar from "../sections/Navbar";
 
 function Terms() {
   return (
