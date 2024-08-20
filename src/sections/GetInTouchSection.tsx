@@ -1,96 +1,126 @@
+import React, { useState } from "react";
+import SmallResponsiveSection from "../components/SmallResponsiveSection";
+import InputField from "../components/InputField";
+import Dropdown from "../components/InputDropdown";
+import RadioButtons from "../components/RadioButtons";
 
-import icon_facebook from "../assets/icons/social/facebook.svg";
-import icon_instagram from "../assets/icons/social/instagram.svg";
-import icon_linkedin from "../assets/icons/social/linkedin.svg";
-
-const socialIcons = [
-    {
-        image: icon_facebook,
-        altText: "facebook icon",
-    },
-    {
-        image: icon_instagram,
-        altText: "instagram icon",
-    },
-    {
-        image: icon_linkedin,
-        altText: "linkedin icon",
-    },
+const fields = [
+  { id: "full-name", name: "fullName", placeholder: "Full Name*", type: "text", autoComplete: "name" },
+  { id: "business-name", name: "businessName", placeholder: "Business Name*", type: "text", autoComplete: "organization" },
+  { id: "email", name: "email", placeholder: "Email*", type: "email", autoComplete: "email" },
+  { id: "service", name: "service", placeholder: "Service*", type: "text", autoComplete: "off" },
+  { id: "number", name: "number", placeholder: "Number*", type: "tel", autoComplete: "tel" },
+  { id: "brief-description", name: "briefDescription", placeholder: "Brief Description*", type: "text", autoComplete: "off" },
 ];
 
-function GetInTouchSection() {
-  return (
-    <section className="bg-bg-dark pt-24 pb-24 flex justify-center space-x-4">
-                <div className="border  w-[39rem] border-p bg-bg-card pt-12 px-8 pb-28 m">
-                    <h2 className="text-white">
-                        Getting in touch is{" "}
-                        <span className="text-primary">easy!</span>
-                    </h2>
-                    <p className="text-white mt-4">
-                        Send us a message and a member of our team will be in
-                        touch with you within 24h
-                    </p>
-                    <p className="mt-8 text-white">
-                        Contact@RiseRapidWebsiteDesign.com
-                    </p>
-                    <div className="border-b border-primary mt-1"></div>
-                    <div className="flex space-x-6 mt-8">
-                        {socialIcons.map(({ image, altText }, index) => (
-                            <img
-                                src={image}
-                                alt={altText}
-                                className="w-10 h-10 object-contain"
-                                key={index}
-                            />
-                        ))}
-                    </div>
-                </div>
+const services = [
+  { label: "Bespoke Web Design", value: "bespoke_web_design" },
+  { label: "Bespoke Graphic Design", value: "bespoke_graphic_design" },
+  { label: "SEO Optimisation", value: "seo_optimisation" },
+  { label: "Social Media Integration", value: "social_media_integration" },
+  { label: "Email Marketing", value: "email_marketing" },
+  { label: "Copywriting", value: "copywriting" },
+  { label: "Other", value: "other" },
+];
 
-                <form action="#" method="post" className="">
-                    <div className="flex flex-col justify-between items-center h-full w-[39rem]">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Name"
-                            required
-                            className="bg-bg-dark-form border border-p focus:border-white text-white outline-none py-2 pl-4 w-full"
-                        />
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Email"
-                            required
-                            className="bg-bg-dark-form border border-p focus:border-white text-white outline-none py-2 pl-4 w-full"
-                        />
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            placeholder="123-456-7890"
-                            required
-                            className="bg-bg-dark-form border border-p focus:border-white text-white outline-none py-2 pl-4 w-full"
-                        />
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows={4}
-                            placeholder="Project description"
-                            required
-                            className="resize-none bg-bg-dark-form border border-p focus:border-white text-white outline-none py-2 pl-4 w-full"
-                        ></textarea>
-                        <button
-                            type="submit"
-                            className="w-48 h-10 bg-cta text-white"
-                        >
-                            Send
-                        </button>
-                    </div>
-                </form>
-            </section>
-  )
+const budgetField = [
+  { label: "£1000+", value: "1000" },
+  { label: "Up to £3000", value: "3000" },
+  { label: "Up to £10,000", value: "10000" },
+];
+interface FileNameProps {
+  inView: boolean;
 }
 
-export default GetInTouchSection
+const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    businessName: "",
+    email: "",
+    service: "",
+    number: "",
+    budget: "",
+    isSubscribed: false,
+  });
+
+  const handleInputChange = (name: string, value: string) => {
+    setFormData((prevState) => {
+      const updatedState = { ...prevState, [name]: value };
+      console.log("Updated formData:", updatedState);
+      return updatedState;
+    });
+  };
+
+  const handleCheckboxChange = (name: string, isChecked: boolean) => {
+    setFormData((prevState) => {
+      const updatedState = { ...prevState, [name]: isChecked };
+      console.log("Updated formData:", updatedState);
+      return updatedState;
+    });
+  };
+
+  return (
+    <SmallResponsiveSection>
+      <h2 className={`${inView ? "fade-in" : "fade-in-hidden"}`}>Get A Quote</h2>
+      <p className={`text-white ${inView ? "fade-in" : "fade-in-hidden"}`}>
+        Or call us now <span className='text-cta'>+44761 9290XX</span>
+      </p>
+      <form action=''>
+        <div className='grid grid-cols-2 grid-rows-4 gap-x-10 pt-[4rem]'>
+          <h3 className={`${inView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
+            About you...
+          </h3>
+          <h3 className={`${inView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
+            About The Project...
+          </h3>
+          {fields.map(({ id, name, placeholder, type, autoComplete }, index) => (
+            <div className={`${inView ? (index % 2 == 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`} style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}>
+              {id === "service" ? (
+                <Dropdown key={id} id={id} name={name} placeholder={placeholder} fieldValue={formData.service} services={services} setFieldValue={handleInputChange} />
+              ) : (
+                <InputField
+                  key={id}
+                  id={id}
+                  name={name}
+                  type={type}
+                  fieldValue={formData[name]}
+                  setFieldValue={handleInputChange}
+                  placeholder={placeholder}
+                  autoComplete={autoComplete}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+        <div className={`${inView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
+          {/* budgetField */}
+          <div className='flex justify-center mt-[2rem]'>
+            <div className='inline'>
+              <p className='inline text-white text-[1.25rem] font-semibold mt-[4rem] mb-2'>Budget*</p>
+              <div className='flex justify-between w-[25rem]'>
+                {<RadioButtons budgetFields={budgetField} selectedBudget={formData.budget} setSelectedBudget={(value) => handleInputChange("budget", value)} />}
+              </div>
+            </div>
+          </div>
+
+          {/* subscribe and submit */}
+          <div className='flex flex-col items-center space-y-[1rem] mt-[4rem]'>
+            <div className='flex align-baseline'>
+              <input
+                className='border-none outline-none'
+                onChange={(e) => handleCheckboxChange("isSubscribed", e.currentTarget.checked)}
+                type='checkbox'
+                name='subscribe'
+                id='subscribe'
+              />
+              <p className='inline ml-[1rem] text-[1.25rem]'>Subscribe to our newsletter</p>
+            </div>
+            <input className=' m-auto bg-cta h-14 w-60 inline px-9 rounded-md text-white font-semibold' type='submit' value='Send' />
+          </div>
+        </div>
+      </form>
+    </SmallResponsiveSection>
+  );
+};
+
+export default GetInTouchSection;

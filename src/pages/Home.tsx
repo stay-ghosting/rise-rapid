@@ -1,154 +1,167 @@
 import Navbar from "../components/Navbar";
-import Banner from "../assets/images/hero image.jpeg";
+import image_Hero from "../assets/images/hero image.png";
 
-import RecentWork from "../assets/images/our resent work.png";
-import HoverCards from "../components/HoverCards";
-
-import icon_screen1 from "../assets/icons/home/screen.svg";
-import icon_screen2 from "../assets/icons/home/screen2..svg";
-import icon_phone from "../assets/icons/home/phone.svg";
-import icon_search from "../assets/icons/home/search.svg";
-
-const icons = [
-  {
-    image: icon_screen1,
-    text: "Bespoke Web Design",
-  },
-  {
-    image: icon_screen2,
-    text: "Social Media",
-  },
-  {
-    image: icon_phone,
-    text: "Mobile-Friendly",
-  },
-  {
-    image: icon_search,
-    text: "SEO Optimisation",
-  },
-];
-
-import icon_Wifi from "../assets/icons/Hover Card/wifi.svg";
-import icon_Phone from "../assets/icons/Hover Card/phone.svg";
-import icon_Thumbs from "../assets/icons/Hover Card/thumbs up.svg";
-import icon_Shake from "../assets/icons/Hover Card/hand shake.svg";
-import icon_Headset from "../assets/icons/Hover Card/headset.svg";
-import icon_Achieve from "../assets/icons/Hover Card/achive.svg";
+import icon_arrow from "../assets/icons/arrow.svg";
+import image_servicesColorSplash from "../assets/images/services color splash.png";
 
 import Footer from "../components/Footer";
 import FAQSection from "../sections/FAQSection";
 import GetInTouchSection from "../sections/GetInTouchSection";
 
-import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import CtaButton from "../components/CtaButton";
+import ResponsiveSection from "../components/ResponsiveSection";
+import useInView from "../hooks/useInView";
 
-const cardIcons = [
-  {
-    image: icon_Wifi,
-    text: "Online Presence",
-  },
-  {
-    image: icon_Phone,
-    text: "Lead Generation",
-  },
-  {
-    image: icon_Thumbs,
-    text: "Customer Engagement",
-  },
-  {
-    image: icon_Shake,
-    text: "Credibility & Trust",
-  },
-  {
-    image: icon_Headset,
-    text: "Customer Support",
-  },
-  {
-    image: icon_Achieve,
-    text: "Competitive Edge",
-  },
+const steps = [
+  ["Plan & Design", "Define clear goals and create strategies."],
+  ["Execute & Improve", "Tailored iterative designs will adapt to your needs."],
+  ["Grow & Succeed", "Expand your reach and achieve success"],
+];
+
+const services = [
+  [
+    "Bespoke Web Design",
+    `At Rise Rapid, we craft tailored websites that reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
+  ],
+  [
+    "Bespoke Graphic Design",
+    `At Rise Rapid, we specialise in custom graphic design that embodies your brand’s distinct personality and goals. We work closely with you to capture your vision and ensure every design element is tailored to your needs.<br /><br /> From initial ideas to final visuals, we deliver unique and impactful designs that enhance your brand and engage your audience.`,
+  ],
+  [
+    "SEO Optimisation",
+    `At Rise Rapid, we enhance your website’s visibility with tailored SEO strategies. Our team carefully analyses your site and implements effective optimisation techniques to improve search engine rankings.<br /><br /> From keyword research to on-page and off-page SEO, we focus on driving organic traffic and boosting your online presence.`,
+  ],
+  [
+    "Social Media Integration",
+    `At Rise Rapid, we seamlessly integrate your website with your social media platforms. Our approach ensures that your social media feeds, sharing buttons, and profiles are fully connected to your site.<br /><br /> This integration helps boost your online presence, engage your audience, and create a cohesive brand experience across all channels.`,
+  ],
+  [
+    "Email Marketing",
+    `At Rise Rapid, we create and manage effective email marketing campaigns that connect with your audience. From designing engaging templates to crafting compelling content, we ensure your messages resonate and drive action.<br /><br />Our approach includes list management, targeted campaigns, and performance tracking to maximise your email marketing impact and achieve your business goals.`,
+  ],
+  [
+    "Copywriting",
+    `At Rise Rapid, we craft compelling and clear copy that communicates your brand’s message effectively. Our skilled team creates engaging content for websites, blogs, and marketing materials, tailored to resonate with your target audience.<br /><br /> From persuasive product descriptions to informative articles, we ensure every word aligns with your brand’s voice and drives meaningful results.`,
+  ],
 ];
 
 const Home = () => {
-  const navigate = useNavigate();
+  const [serviceIndex, setServiceIndex] = useState(0);
 
-  const serviceSection = useRef<HTMLDivElement | null>(null);
+  const [servicesRef, isServicesInView] = useInView<HTMLDivElement>(220);
+  const [stepsRef, isStepsInView] = useInView<HTMLHeadingElement>(0);
+  const [FAQRef, isFAQInView] = useInView<HTMLDivElement>(300);
+  const [getInTouchRef, isGetInTouchView] = useInView<HTMLDivElement>(200);
 
   const scroll = () => {
-    serviceSection.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
+    if (servicesRef.current) {
+      const offset = -4 * 16;
+      const targetPosition = servicesRef.current.getBoundingClientRect().top + window.pageYOffset + offset;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <>
       <Navbar />
-      <section className="relative h-[37rem] flex items-center justify-center text-center text-white">
-        <div className="absolute inset-0">
-          <img
-            src={Banner}
-            alt="Background Image"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="relative z-10 w-[60%] px-6 py-12 md:px-12 md:py-24 flex items-center justify-center">
+      {/* hero */}
+      <ResponsiveSection>
+        <div className='flex flex-row mt-[12rem]'>
           <div>
-            <h1 className="font-[700] text-black text-[2.5rem]">
-              Website <span className="text-primary">Design</span> Specialists
+            <h1 className='mb-[4rem]'>
+              Website Design <br />
+              To Make <span className='text-cta'>Your Brand</span> <br />
+              Rise Rapid
             </h1>
-            <p className="mt-4 text-white">
-              Affordable websites that dont look cheap
-            </p>
-            <div className="mt-8 flex flex-row justify-center space-x-5">
-              <button className="border text-cta border-cta w-[13.5rem] py-2 rounded-md box-border" onClick={() => scroll()}>
-                LEARN MORE
-              </button>
-              <button
-                className="bg-cta w-[13.5rem] py-2 rounded-md box-border"
-                onClick={() => navigate("/contact")}
-              >
-                CONTACT US
-              </button>
-            </div>
+            <CtaButton />
+          </div>
+          <div className='w-[27.178rem]'>
+            <img className='scale-[200%] translate-x-[9rem] translate-y-[3rem]' src={image_Hero} alt='hero image' />
           </div>
         </div>
-      </section>
-      <div className="flex flex-row justify-center space-x-[9rem] pt-16" ref={serviceSection}>
-        {icons.map(({ image, text }, index) => (
-          <div key={index} className="w-[10.5rem] flex flex-col items-center">
-            <img
-              src={image}
-              className="text-primary w-[5.5rem] h-[5.5rem] object-contain"
-              alt={text + " image"}
-            />
-            <p className="text-[#717171] mt-2">{text}</p>
-          </div>
-        ))}
-      </div>
-      <div className="w-[73.75rem] m-auto">
-        <h2 className="text-[3rem] mt-32">Our Recent Work</h2>
-        <img
-          src={RecentWork}
-          alt="Recent work image"
-          className="w-[40rem] mt-12"
-        />
-      </div>
-      <section className="bg-bg-dark flex flex-col items-center pt-24 pb-28">
-        <h2 className="text-white">
-          The Essential Role of a <span className="text-primary">Website</span>{" "}
-          in Scaling Your Business
+        <div className='flex flex-row justify-center mt-[7rem] mb-[5rem]' onClick={scroll}>
+          <img src={icon_arrow} />
+        </div>
+      </ResponsiveSection>
+      {/* sevices */}
+      <ResponsiveSection>
+        <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`}>
+          <span className='text-cta'>Services</span> we offer
         </h2>
-        <div className="inline-grid grid-cols-3 gap-2 mt-12">
-          {cardIcons.map(({ image, text }, index) => (
-            <HoverCards image={image} text={text} key={index} />
-          ))}
+        <div className={`flex flex-row mt-[4rem]`}>
+          <ul>
+            {services.map(([title, _], index) => (
+              <li
+              className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
+              style={{animationDelay: `400ms`}}
+              >
+                <button
+                  className={` h-[4rem] w-[23rem] rounded-l-lg hover:bg-card  
+                    ${index == serviceIndex && "tab-gradient animated-background"}`}
+                  onClick={() => setServiceIndex(index)}
+                >
+                  <p
+                    className={`${isServicesInView ? "fade-right" : "fade-in-hidden"} text-white font-semibold text-left px-[1rem]`}
+                    style={{animationDelay: `${250 * index + 400}ms`}}
+                  >{title}</p>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div
+            className={`grow bg-card h-[36rem] rounded-r-lg rounded-bl-lg pt-[2rem] px-[4rem] -z-30 relative 
+              ${serviceIndex == 0 ? "" : "rounded-tl-lg"}
+              ${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
+            style={{ animationDelay: "400ms" }}
+          >
+            <div className='absolute bottom-8 right-8'>
+              <CtaButton />
+            </div>
+            <img className='absolute bottom-0 right-0 rounded-lg -z-10' src={image_servicesColorSplash} />
+            <h3>{services[serviceIndex][0]}</h3>
+            <br />
+            <p className='' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
+          </div>
         </div>
-      </section>
-
-      <GetInTouchSection />
-      <FAQSection />
+      </ResponsiveSection>
+      {/* steps */}
+      <div className='bg-[#45086F] py-[7rem] mt-[10rem]'>
+        <ResponsiveSection>
+          <h2 ref={stepsRef} className={`text-center mb-[4rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}>
+            Concept to Creation in 3 Steps...
+          </h2>
+          <ul className='flex flex-row justify-between'>
+            {steps.map(([title, description], index) => (
+              <>
+                <div key={index} className={`w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
+                  <p className='text-center text-[4rem] text-white font-bold'>{index + 1}.</p>
+                  <h3 className='text-center'>{title}</h3>
+                  <p className='text-center'>{description}</p>
+                </div>
+                {index != 2 && (
+                  <div key={index} className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}>
+                    <p className='text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
+                  </div>
+                )}
+              </>
+            ))}
+          </ul>
+        </ResponsiveSection>
+      </div>
+      {/* faq */}
+      <div className={`mb-[20rem]`} ref={FAQRef}>
+        <FAQSection inView={isFAQInView}/>
+      </div>
+      {/* get in touch */}
+      <div className={`mb-[15rem]`} ref={getInTouchRef}>
+        <GetInTouchSection inView={isGetInTouchView} />
+      </div>
+      <br /> <br />
       <Footer />
     </>
   );

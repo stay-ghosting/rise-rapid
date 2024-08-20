@@ -1,6 +1,9 @@
+import { useState } from "react";
 import icon_facebook from "../assets/icons/social/facebook.svg";
 import icon_instagram from "../assets/icons/social/instagram.svg";
 import icon_linkedin from "../assets/icons/social/linkedin.svg";
+import icon_submitArrow from "../assets/icons/submit arrow.svg";
+import InputField from "./InputField";
 
 const socialIcons = [
   {
@@ -19,63 +22,50 @@ const socialIcons = [
 
 const Footer = () => {
   return (
-    <div className="bg-[#151515] pb-12 flex flex-col items-center px-28">
-      <ul className="flex space-x-12 text-white font-light mt-16">
+    <div className='bg-[#151515] pb-6 flex flex-col items-center px-16'>
+      <ul className='flex space-x-[5rem] text-white font-extralight mt-16'>
         <li>
-          <a href="/">Home</a>
+          <a href='/'>Home</a>
         </li>
         <li>
-          <a href="/contact">Contact</a>
+          <a href='/contact'>Contact</a>
         </li>
         <li>
-          <a href="/about">About</a>
+          <a href='/about'>About</a>
         </li>
         <li>
-          <a href="/">Steps</a>
+          <a href='/'>Steps</a>
         </li>
         <li>
-          <a href="/">Links</a>
+          <a href='/'>Links</a>
         </li>
         <li>
-          <a href="/terms">Terms</a>
+          <a href='/terms'>Terms</a>
         </li>
         <li>
-          <a href="/privacy">Privacy</a>
+          <a href='/privacy'>Privacy</a>
         </li>
       </ul>
-      <div className="flex items-center bg-[#5D5D5D] h-20 px-14 mt-8 space-x-20 rounded-lg mb-10">
-        <p className="text-white">Subscribe to our newsletter</p>
-        <div className="">
-          <form action="">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="outline-none w-36 h-10 pl-2 text-[0.75rem]"
-              placeholder="Type your email..."
-            />
-            <button
-              type="submit"
-              className="h-10 box-border border text-[0.75rem] px-4 text-white border-white"
-            >
-              Subscribe
-            </button>
+      <div className='relative mt-[11rem] mb-[6rem]  flex flex-col justify-center'>
+        <div className='absolute -left-[27rem] -top-[7rem]'>
+          <p className='text-white text-[4rem] font-bold leading-[6rem]'>
+            NEWSLETTER <br />
+            <span className='text-cta'>SIGNUP</span>
+          </p>
+        </div>
+        <div className='w-[36rem] relative'>
+          <form action=''>
+          <input type="image" src={icon_submitArrow} className="cursor-pointer absolute right-4 top-4" />
+            <InputField id='email' name='email' type='email' placeholder='Your email address' autoComplete='email' />
           </form>
         </div>
       </div>
-      <div className="border-[#505050] border-b w-full"></div>
-      <div className="flex justify-between items-center w-full px-16 mt-6">
-        <p className="font-thin text-[0.875rem] text-white">
-          Established in 2024. All rights reserved.
-        </p>
-        <div className="flex space-x-8">
+      <div className='border-[#505050] border-b w-full'></div>
+      <div className='flex justify-between items-center w-full mt-6'>
+        <p className='font-thin text-[0.875rem] text-white'>Established in 2024. All rights reserved.</p>
+        <div className='flex space-x-8'>
           {socialIcons.map(({ image, altText }, index) => (
-            <img
-              src={image}
-              alt={altText}
-              key={index}
-              className="w-12 h-12 object-contain"
-            />
+            <img src={image} alt={altText} key={index} className='w-12 h-12 object-contain' />
           ))}
         </div>
       </div>

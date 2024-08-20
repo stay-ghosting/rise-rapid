@@ -1,47 +1,58 @@
-import image_faq from "../assets/images/faq.jpeg";
 import FAQDropdown from "../components/FAQDropdown";
+import SmallResponsiveSection from "../components/SmallResponsiveSection";
 
-const faq_questions = [
-  {
-      title: "How much does it cost?",
-  },
-  {
-      title: "What is our refund policy?",
-  },
-  {
-      title: "How do I get started?",
-  },
-  {
-      title: "How long is the process?",
-  },
-  {
-      title: "What services do we offer?",
-  },
-  {
-      title: "What types of websites do we create?",
-  },
-  {
-      title: "Will my website be mobile-friendly?",
-  },
+interface FAQSectionProps {
+  inView: boolean;
+}
+
+const questions = [
+  [
+    "How much does it cost?",
+    "Our website prices vary from £1,000 to £10,000, based on the scope and complexity of your project."
+  ],
+  [
+    "How do I get started?",
+    "It's easy. Just click here and complete the Contact Form."
+  ],
+  [
+    "What services do you offer?",
+    "We specialise in Website Design, Graphic Design, SEO Optimisation, Social Media Integration, Email Marketing & Copywriting"
+  ],
+  [
+    "Can I refund my deposit?",
+    "The deposit becomes non-refundable once we begin work on your website."
+  ],
+  [
+    "How long is the process?",
+    "Timelines vary for each project. For a quick estimate, just reach out to us through the contact form!"
+  ],
+  [
+    "Will my website be mobile-friendly?",
+    "Yes, whether we're updating your existing site or building a new one, we'll ensure it’s designed to be mobile-friendly."
+  ],
 ];
 
-function FAQSection() {
-    return (
-        <section className="flex justify-center">
-            <img src={image_faq} alt="faq image" className="w-[40rem]" />
-            <div className="mt-16">
-                <h2 className="text-[2rem]">Frequently Asked Questions</h2>
-                {faq_questions.map(({ title }, index) => (
-                    <div
-                        className="w-[35rem] p-4 border-b border-[#D7DEF0]"
-                        key={index}
-                    >
-                        <FAQDropdown title={title} />
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
+const FAQSection: React.FC<FAQSectionProps> = ({ inView }) => {
+  return (
+    <SmallResponsiveSection>
+      <div className="mt-[16rem]">
+      <h2
+        className={`${ inView ? "fade-right" : "opacity-0"}`}
+      >
+        FAQ
+      </h2>
+      <ul className="mt-[2rem]">
+        {
+          questions.map(([title, answer], index) => (
+            <li key={index} className="pb-[1rem]">
+              <FAQDropdown title={title} answer={answer} inView={inView} index={index}/>
+            </li>
+          ))
+        }
+      </ul>
+        </div>
+    </SmallResponsiveSection>
+  );
 }
 
 export default FAQSection;
