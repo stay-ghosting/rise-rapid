@@ -1,9 +1,11 @@
 
 ## TODO
 - create a checkbox component
-- dropdown buggy
-- cta colour in navbar and footer
-- fix scrolling behavior
-- talk about making small sections wider
 - style down arrow hero section
+- cta colour in navbar and footer
+- responsive design
+- shorten the text on copywiring services
+- add shaddows
+
+- talk about making small sections wider
 - talk about tab gradient

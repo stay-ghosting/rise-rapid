@@ -94,9 +94,9 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
                     id={id}
                     name={name}
                     placeholder={placeholder}
-                    value={formData.service}
                     options={services}
                     setFieldValue={(value) => handleInputChange("service", value)}
+                    inView={inView}
                   />
                 </div>
               ) : (
