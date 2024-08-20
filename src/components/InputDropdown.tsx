@@ -1,37 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
-interface DropdownProps {
+interface CustomDropdownProps {
   id: string;
   name: string;
   placeholder: string;
-  services: { label: string; value: string }[];
-  setFieldValue: (name: string, value: string) => void;
-  fieldValue: string;
+  options: { label: string; value: string }[];
+  value: string;
+  setFieldValue: (value: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ id, name, placeholder, services, setFieldValue, fieldValue }) => {
-  
+const CustomDropdown: React.FC<CustomDropdownProps> = ({ id, name, placeholder, options, value, setFieldValue }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState<string>(placeholder);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleOptionClick = (value: string, label: string) => {
+    setFieldValue(value);
+    setSelectedLabel(label);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="py-2">
-      <select
+    <div className='relative inline-block w-full py-2'>
+      <button
+        type='button'
         id={id}
         name={name}
-        onChange={e => {setFieldValue(name, e.target.value)}}
-        value={fieldValue}
-        required
-        className="outline-none py-2 bg-transparent focus:bg-[#202020] pl-[1rem] w-full border-b border-gray-400 focus:border-white transition-colors ease-in"
+        onClick={toggleDropdown}
+        className='w-full border-b border-gray-400 py-2 px-4 text-[1.25rem] font-[400] text-white flex items-center justify-between h-[3.25rem]'
       >
-        <option value="" disabled>
-          {placeholder}
-        </option>
-        {services.map((service) => (
-          <option key={service.value} value={service.value}>
-            {service.label}
-          </option>
-        ))}
-      </select>
+        {selectedLabel || placeholder}
+        <span className='ml-2 mt-2 text-4xl'>&#9662;</span>
+      </button>
+      {isOpen && (
+        <div className='absolute w-full bg-card text-white border-b border-r border-l border-gray-400 rounded-b-[0.375rem]'>
+          {options.map((option) => (
+            <div key={option.value} onClick={() => handleOptionClick(option.value, option.label)} className='py-2 px-4 cursor-pointer hover:bg-[#303030]'>
+              {option.label}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default Dropdown;
+export default CustomDropdown;
