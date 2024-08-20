@@ -3,7 +3,6 @@ import SmallResponsiveSection from "../components/SmallResponsiveSection";
 import InputField from "../components/InputField";
 import Dropdown from "../components/InputDropdown";
 import RadioButtons from "../components/RadioButtons";
-
 const fields = [
   { id: "full-name", name: "fullName", placeholder: "Full Name*", type: "text", autoComplete: "name" },
   { id: "business-name", name: "businessName", placeholder: "Business Name*", type: "text", autoComplete: "organization" },
@@ -32,8 +31,17 @@ interface FileNameProps {
   inView: boolean;
 }
 
+interface FormData {
+  fullName: string;
+  businessName: string;
+  email: string;
+  service: string;
+  number: string;
+  budget: string;
+  isSubscribed: boolean;
+}
 const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     businessName: "",
     email: "",
@@ -43,7 +51,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
     isSubscribed: false,
   });
 
-  const handleInputChange = (name: string, value: string) => {
+  const handleInputChange = (name: keyof FormData, value: string) => {
     setFormData((prevState) => {
       const updatedState = { ...prevState, [name]: value };
       console.log("Updated formData:", updatedState);
@@ -51,7 +59,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
     });
   };
 
-  const handleCheckboxChange = (name: string, isChecked: boolean) => {
+  const handleCheckboxChange = (name: keyof FormData, isChecked: boolean) => {
     setFormData((prevState) => {
       const updatedState = { ...prevState, [name]: isChecked };
       console.log("Updated formData:", updatedState);
@@ -74,20 +82,33 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
             About The Project...
           </h3>
           {fields.map(({ id, name, placeholder, type, autoComplete }, index) => (
-            <div className={`${inView ? (index % 2 == 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`} style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}>
+            <div
+              key={id}
+              className={`${inView ? (index % 2 == 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}
+              ${id === "service" && "z-10 "}`}
+              style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
+            >
               {id === "service" ? (
-                <Dropdown key={id} id={id} name={name} placeholder={placeholder} fieldValue={formData.service} services={services} setFieldValue={handleInputChange} />
+                <div className="z-50">
+                  <Dropdown
+                    id={id}
+                    name={name}
+                    placeholder={placeholder}
+                    value={formData.service}
+                    options={services}
+                    setFieldValue={(value) => handleInputChange("service", value)}
+                  />
+                </div>
               ) : (
-                <InputField
-                  key={id}
-                  id={id}
-                  name={name}
-                  type={type}
-                  fieldValue={formData[name]}
-                  setFieldValue={handleInputChange}
-                  placeholder={placeholder}
-                  autoComplete={autoComplete}
-                />
+                  <InputField
+                    id={id}
+                    name={name}
+                    type={type}
+                    fieldValue={formData[name as keyof FormData] as string}
+                    setFieldValue={([name, value]) => handleInputChange(name as keyof FormData, value)}
+                    placeholder={placeholder}
+                    autoComplete={autoComplete}
+                  />
               )}
             </div>
           ))}
