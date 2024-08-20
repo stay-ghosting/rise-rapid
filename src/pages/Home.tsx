@@ -1,14 +1,16 @@
 import Navbar from "../components/Navbar";
 import image_Hero from "../assets/images/hero image.png";
 
-import icon_arrow from "../assets/icons/arrow.svg";
+// import icon_arrow from "../assets/icons/arrow.svg";
+import icon_arrow_dark from "../assets/icons/home/next section arrow/dark grey.svg";
+import icon_arrow from "../assets/icons/home/next section arrow/light gray.svg";
 import image_servicesColorSplash from "../assets/images/services color splash.png";
 
 import Footer from "../components/Footer";
 import FAQSection from "../sections/FAQSection";
 import GetInTouchSection from "../sections/GetInTouchSection";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import CtaButton from "../components/CtaButton";
 import ResponsiveSection from "../components/ResponsiveSection";
 import useInView from "../hooks/useInView";
@@ -54,6 +56,8 @@ const Home = () => {
   const [FAQRef, isFAQInView] = useInView<HTMLDivElement>(300);
   const [getInTouchRef, isGetInTouchView] = useInView<HTMLDivElement>(200);
 
+  const [isScrollButtonHovered, setIsScrollButtonHovered] = useState(false);
+
   const scroll = () => {
     if (servicesRef.current) {
       const offset = -4 * 16;
@@ -84,8 +88,15 @@ const Home = () => {
             <img className='scale-[200%] translate-x-[9rem] translate-y-[3rem]' src={image_Hero} alt='hero image' />
           </div>
         </div>
-        <div className='flex flex-row justify-center mt-[7rem] mb-[5rem]' onClick={scroll}>
-          <img src={icon_arrow} />
+        <div className='flex flex-row justify-center mt-[5rem] mb-[12rem] ' 
+        onClick={scroll}>
+          <div
+            className='z-10'
+            onMouseEnter={() => setIsScrollButtonHovered(true)}
+            onMouseLeave={() => setIsScrollButtonHovered(false)}
+          >
+            <img className="" src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
+          </div>
         </div>
       </ResponsiveSection>
       {/* sevices */}
@@ -96,10 +107,7 @@ const Home = () => {
         <div className={`flex flex-row mt-[4rem]`}>
           <ul>
             {services.map(([title, _], index) => (
-              <li
-              className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
-              style={{animationDelay: `400ms`}}
-              >
+              <li className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
                 <button
                   className={` h-[4rem] w-[23rem] rounded-l-lg hover:bg-card  
                     ${index == serviceIndex && "tab-gradient animated-background"}`}
@@ -107,8 +115,10 @@ const Home = () => {
                 >
                   <p
                     className={`${isServicesInView ? "fade-right" : "fade-in-hidden"} text-white font-semibold text-left px-[1rem]`}
-                    style={{animationDelay: `${250 * index + 400}ms`}}
-                  >{title}</p>
+                    style={{ animationDelay: `${250 * index + 400}ms` }}
+                  >
+                    {title}
+                  </p>
                 </button>
               </li>
             ))}
@@ -138,13 +148,17 @@ const Home = () => {
           <ul className='flex flex-row justify-between'>
             {steps.map(([title, description], index) => (
               <>
-                <div key={index} className={`w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
+                <div key={index * 2} className={`w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
                   <p className='text-center text-[4rem] text-white font-bold'>{index + 1}.</p>
                   <h3 className='text-center'>{title}</h3>
                   <p className='text-center'>{description}</p>
                 </div>
                 {index != 2 && (
-                  <div key={index} className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}>
+                  <div
+                    key={index * 2 + 1}
+                    className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}
+                    style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}
+                  >
                     <p className='text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
                   </div>
                 )}
@@ -155,7 +169,7 @@ const Home = () => {
       </div>
       {/* faq */}
       <div className={`mb-[20rem]`} ref={FAQRef}>
-        <FAQSection inView={isFAQInView}/>
+        <FAQSection inView={isFAQInView} />
       </div>
       {/* get in touch */}
       <div className={`mb-[15rem]`} ref={getInTouchRef}>
