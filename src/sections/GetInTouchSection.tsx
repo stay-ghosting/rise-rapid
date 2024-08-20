@@ -3,6 +3,7 @@ import SmallResponsiveSection from "../components/SmallResponsiveSection";
 import InputField from "../components/InputField";
 import Dropdown from "../components/InputDropdown";
 import RadioButtons from "../components/RadioButtons";
+import CustomCheckbox from "../components/Checkbox";
 const fields = [
   { id: "full-name", name: "fullName", placeholder: "Full Name*", type: "text", autoComplete: "name" },
   { id: "business-name", name: "businessName", placeholder: "Business Name*", type: "text", autoComplete: "organization" },
@@ -59,9 +60,9 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
     });
   };
 
-  const handleCheckboxChange = (name: keyof FormData, isChecked: boolean) => {
+  const handleCheckboxChange = (name: keyof FormData) => {
     setFormData((prevState) => {
-      const updatedState = { ...prevState, [name]: isChecked };
+      const updatedState = { ...prevState, [name]: !prevState[name] };
       console.log("Updated formData:", updatedState);
       return updatedState;
     });
@@ -127,12 +128,19 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
           {/* subscribe and submit */}
           <div className='flex flex-col items-center space-y-[1rem] mt-[4rem]'>
             <div className='flex align-baseline'>
-              <input
+              {/* <input
                 className='border-none outline-none'
                 onChange={(e) => handleCheckboxChange("isSubscribed", e.currentTarget.checked)}
                 type='checkbox'
                 name='subscribe'
                 id='subscribe'
+              /> */}
+              <CustomCheckbox  
+                id={"is-Subscribed"}
+                name={"isSubscribed"}
+                onChange={(name) => handleCheckboxChange(name as keyof FormData)}
+                checked={formData.isSubscribed}
+
               />
               <p className='inline ml-[1rem] text-[1.25rem]'>Subscribe to our newsletter</p>
             </div>
