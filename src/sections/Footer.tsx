@@ -4,6 +4,7 @@ import icon_instagram from "../assets/icons/social/instagram.svg";
 import icon_linkedin from "../assets/icons/social/linkedin.svg";
 import icon_submitArrow from "../assets/icons/submit arrow.svg";
 import InputField from "../components/InputField";
+import CustomNavLink from "../components/CustomNavLink";
 
 const socialIcons = [
   {
@@ -26,27 +27,12 @@ const Footer = () => {
   return (
     <div className='bg-[#151515] pb-6 flex flex-col items-center px-16'>
       <ul className='flex space-x-[5rem] text-white font-extralight mt-16'>
-        <li>
-          <a href='/'>Home</a>
-        </li>
-        <li>
-          <a href='/contact'>Contact</a>
-        </li>
-        <li>
-          <a href='/about'>About</a>
-        </li>
-        <li>
-          <a href='/'>Steps</a>
-        </li>
-        <li>
-          <a href='/'>Links</a>
-        </li>
-        <li>
-          <a href='/terms'>Terms</a>
-        </li>
-        <li>
-          <a href='/privacy'>Privacy</a>
-        </li>
+        <CustomNavLink link='/' text='Home' />
+        <CustomNavLink link='/contact' text='Contact' />
+        <CustomNavLink link='/about' text='About' />
+        <CustomNavLink link='/blog' text='Blog' />
+        <CustomNavLink link='/terms' text='Terms' />
+        <CustomNavLink link='/privacy' text='Privacy' />
       </ul>
       <div className='relative mt-[11rem] mb-[6rem]  flex flex-col justify-center'>
         <div className='absolute -left-[27rem] -top-[7rem]'>
@@ -58,7 +44,15 @@ const Footer = () => {
         <div className='w-[36rem] relative'>
           <form action=''>
             <input type='image' src={icon_submitArrow} className='cursor-pointer p-[1rem] absolute right-2 top-2' />
-            <InputField fieldValue={email} setFieldValue={(name, value) => setEmail(value)} id='email' name='email' type='email' placeholder='Your email address' autoComplete='email' />
+            <InputField
+              fieldValue={email}
+              setFieldValue={(name, value) => setEmail(value)}
+              id='email'
+              name='email'
+              type='email'
+              placeholder='Your email address'
+              autoComplete='email'
+            />
           </form>
         </div>
       </div>
