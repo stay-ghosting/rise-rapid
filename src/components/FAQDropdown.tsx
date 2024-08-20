@@ -22,7 +22,7 @@ const FAQDropdown: React.FC<FAQProps> = ({ title, answer, inView, index }) => {
   }, [isOpen, height]);
   console.log(height);
 
-  const animationDelay = index * 200 + 300;
+  const animationDelay = index * 100 + 300;
 
   return (
     <div className={`flex flex-col`}>
