@@ -3,7 +3,7 @@ import icon_facebook from "../assets/icons/social/facebook.svg";
 import icon_instagram from "../assets/icons/social/instagram.svg";
 import icon_linkedin from "../assets/icons/social/linkedin.svg";
 import icon_submitArrow from "../assets/icons/submit arrow.svg";
-import InputField from "./InputField";
+import InputField from "../components/InputField";
 
 const socialIcons = [
   {

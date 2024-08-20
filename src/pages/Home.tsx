@@ -6,7 +6,7 @@ import icon_arrow_dark from "../assets/icons/home/next section arrow/dark grey.s
 import icon_arrow from "../assets/icons/home/next section arrow/light gray.svg";
 import image_servicesColorSplash from "../assets/images/services color splash.png";
 
-import Footer from "../components/Footer";
+import Footer from "../sections/Footer";
 import FAQSection from "../sections/FAQSection";
 import GetInTouchSection from "../sections/GetInTouchSection";
 

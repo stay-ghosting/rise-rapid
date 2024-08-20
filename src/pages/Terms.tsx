@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+import Footer from "../sections/Footer";
 import LargeLogo from "../components/LargeLogo";
 import Navbar from "../sections/Navbar";
 
