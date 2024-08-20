@@ -13,7 +13,8 @@ export default {
         "cta": "#1A63C1",
         "cta-hover": "#006FFF",
         "primary": "#1A63C1",
-        "card": "#202020"
+        "card": "#202020",
+        "shaddow": "#121212"
       }
     },
   },

@@ -144,7 +144,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView }) => {
               />
               <p className='inline ml-[1rem] text-[1.25rem]'>Subscribe to our newsletter</p>
             </div>
-            <input className=' m-auto bg-cta h-14 w-60 inline px-9 rounded-md text-white font-semibold' type='submit' value='Send' />
+            <input className=' m-auto bg-cta h-14 w-60 inline px-9 rounded-md shadow-xl shadow-shaddow text-white font-semibold' type='submit' value='Send' />
           </div>
         </div>
       </form>

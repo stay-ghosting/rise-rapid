@@ -124,7 +124,7 @@ const Home = () => {
             ))}
           </ul>
           <div
-            className={`grow bg-card h-[36rem] rounded-r-lg rounded-bl-lg pt-[2rem] px-[4rem] relative 
+            className={`grow bg-card shadow-lg shadow-shaddow h-[36rem] rounded-r-lg rounded-bl-lg pt-[2rem] px-[4rem] relative 
               ${serviceIndex == 0 ? "" : "rounded-tl-lg"}
               ${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
             style={{ animationDelay: "400ms" }}
