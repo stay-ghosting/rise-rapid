@@ -40,7 +40,7 @@ const InputField: React.FC<InputFieldProps> = ({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required
-        className="outline-none py-2 bg-transparent focus:bg-[#202020] pl-[1rem] w-full border-b border-gray-400 focus:border-white transition-colors ease-in h-[3.25rem]"
+        className="outline-none py-[3rem] sm:py-2 bg-transparent focus:bg-[#202020]  pl-[1rem] w-full border-b border-gray-400 focus:border-white transition-colors ease-in h-[3.25rem]"
       />
     </div>
   );

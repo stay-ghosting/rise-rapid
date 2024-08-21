@@ -3,9 +3,12 @@ import LargeLogo from "../components/LargeLogo";
 import Navbar from "../sections/Navbar";
 import GetInTouchSection from "../sections/GetInTouchSection";
 
-import image_meetUs from "../assets/images/about us/meet us.jpeg";
-import image_ourStory from "../assets/images/about us/our story.jpeg";
-import image_ourMission from "../assets/images/about us/our mission.jpeg";
+import image_meetUs from "../assets/images/about us/meet us.png";
+import image_ourStory from "../assets/images/about us/our story.png";
+import image_ourMission from "../assets/images/about us/our mission.png";
+import FAQSection from "../sections/FAQSection";
+import ResponsiveSection from "../sections/ResponsiveSection";
+import SmallResponsiveSection from "../sections/SmallResponsiveSection";
 
 const sections = [
   {
@@ -30,28 +33,30 @@ function About() {
     <>
       <Navbar />
       <LargeLogo />
-      <h1 className="text-center">About Us</h1>
-      <div className="flex flex-col items-center space-y-12 pt-20 pb-44">
-        {sections.map(({ title, body, image }, index) => (
-          <div>
-            <div key={index} className="flex">
-              <div className="w-[35.438rem] pr-12">
-                <h2>{title}</h2>
-                <p>{body}</p>
-              </div>
-              <div>
-                <div className="w-[28.375rem] h-[17rem] overflow-hidden">
-                  <img
-                    src={image}
-                    alt={title + " image"}
-                    className="object-cover"
-                  />
+      <ResponsiveSection>
+        <h1 className='text-center mt-[4rem]'>About Us</h1>
+        <div className='flex flex-col items-center space-y-12 pb-[8rem]'>
+          {sections.map(({ title, body, image }, index) => (
+            <div className="flex flex-row mt-[15rem]">
+              <div key={index} className='flex flex-col items-center'>
+                <div>
+                  <h2 className='w-full'>{title}</h2>
+                  <div className='flex flex-col items-center'>
+                    <p>{body}</p>
+                    <div className='mt-[4rem] inline sm:hidden'>
+                      <img src={image} alt={title + " image"} className='object-cover max-w-[80rem] w-auto h-auto ' />
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className='hidden sm:block'>
+                <img src={image} alt={title + " image"} className='object-cover max-w-md w-auto h-auto ' />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </ResponsiveSection>
+      <FAQSection />
       <GetInTouchSection />
       <Footer />
     </>

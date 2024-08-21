@@ -72,40 +72,37 @@ const Home = () => {
 
   return (
     <>
+      {/* debug */}
+      <div className='fixed top-5 left-5 w-[1rem] h-[1rem] sm:bg-red-500 md:bg-amber-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-purple-500'></div>
       <Navbar />
       {/* hero */}
       <ResponsiveSection>
         <div className='flex flex-row mt-[12rem]'>
-          <div>
-            <h1 className='mb-[4rem]'>
+          <div className="mx-auto sm:mx-0">
+            <h1 className='mb-[4rem] min-w-[41rem]'>
               Website Design <br />
               To Make <span className='text-cta'>Your Brand</span> <br />
               Rise Rapid
             </h1>
-            <CtaButton />
+              <CtaButton />
           </div>
-          <div className='w-[27.178rem]'>
+          <div className='w-[27.178rem] hidden sm:block'>
             <img className='scale-[200%] translate-x-[9rem] translate-y-[3rem]' src={image_Hero} alt='hero image' />
           </div>
         </div>
-        <div className='flex flex-row justify-center mt-[5rem] mb-[12rem] ' 
-        onClick={scroll}>
-          <div
-            className='z-10'
-            onMouseEnter={() => setIsScrollButtonHovered(true)}
-            onMouseLeave={() => setIsScrollButtonHovered(false)}
-          >
-            <img className="" src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
+        <div className='hidden sm:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
+          <div className='z-10' onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
+            <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
           </div>
         </div>
       </ResponsiveSection>
       {/* sevices */}
       <ResponsiveSection>
-        <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`}>
+        <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"} mt-[12rem]`}>
           <span className='text-cta'>Services</span> we offer
         </h2>
         <div className={`flex flex-row mt-[4rem]`}>
-          <ul>
+          <ul className="hidden sm:block">
             {services.map(([title, _], index) => (
               <li className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
                 <button
@@ -124,7 +121,7 @@ const Home = () => {
             ))}
           </ul>
           <div
-            className={`grow bg-card shadow-lg shadow-shaddow h-[36rem] rounded-r-lg rounded-bl-lg pt-[2rem] px-[4rem] relative 
+            className={`grow bg-card shadow-lg shadow-shaddow min-h-[36rem] rounded-r-lg rounded-bl-lg pt-[2rem] px-[4rem] relative 
               ${serviceIndex == 0 ? "" : "rounded-tl-lg"}
               ${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
             style={{ animationDelay: "400ms" }}
@@ -135,23 +132,24 @@ const Home = () => {
             <img className='absolute bottom-0 right-0 rounded-lg -z-10' src={image_servicesColorSplash} />
             <h3>{services[serviceIndex][0]}</h3>
             <br />
-            <p className='' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
+            <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
           </div>
         </div>
       </ResponsiveSection>
       {/* steps */}
       <div className='bg-[#45086F] py-[7rem] mt-[10rem]'>
         <ResponsiveSection>
-          <h2 ref={stepsRef} className={`text-center mb-[4rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}>
+          <div className="py-[4rem] sm:py-0">
+          <h2 ref={stepsRef} className={`sm:text-center sm:px-0 mb-[4rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}>
             Concept to Creation in 3 Steps...
           </h2>
-          <ul className='flex flex-row justify-between'>
+          <ul className='flex flex-col space-y-[3rem] sm:space-y-0 items-center sm:items-start sm:flex-row justify-between'>
             {steps.map(([title, description], index) => (
               <>
-                <div key={index * 2} className={`w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
-                  <p className='text-center text-[4rem] text-white font-bold'>{index + 1}.</p>
-                  <h3 className='text-center'>{title}</h3>
-                  <p className='text-center'>{description}</p>
+                <div key={index * 2} className={`sm:w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
+                  <p className='text-center text-[7rem] font-semibold sm:text-[4rem] text-white sm:font-bold'>{index + 1}.</p>
+                  <h3 className='text-center text-[5rem] sm:text-[2rem]'>{title}</h3>
+                  <p className='text-center max-w-[50rem] sm:max-w-[40rem]'>{description}</p>
                 </div>
                 {index != 2 && (
                   <div
@@ -159,12 +157,13 @@ const Home = () => {
                     className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}
                     style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}
                   >
-                    <p className='text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
+                    <p className='hidden sm:block text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
                   </div>
                 )}
               </>
             ))}
           </ul>
+          </div>
         </ResponsiveSection>
       </div>
       {/* faq */}

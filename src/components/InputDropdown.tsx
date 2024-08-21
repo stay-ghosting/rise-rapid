@@ -49,13 +49,13 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ id, name, placeholder, 
         id={id}
         name={name}
         onClick={toggleDropdown}
-        className='w-full border-b border-gray-400 py-2 px-4 text-[1.25rem] font-[400] text-white flex items-center justify-between h-[3.25rem]'
+        className='w-full border-b border-gray-400 px-4 py-[3rem] sm:py-2 font-[400] text-white flex items-center justify-between h-[3.25rem]'
       >
         {selectedLabel || placeholder}
         <span className='ml-2 mt-2 text-4xl'>&#9662;</span>
       </button>
       {isOpen && (
-        <div className='absolute w-full bg-card text-white border-b border-r border-l border-gray-400 rounded-b-[0.375rem]'>
+        <div className='absolute w-full bg-card text-white border-b border-r border-l text-[1.5rem] lg:text-[1.25rem] border-gray-400 rounded-b-[0.375rem]'>
           {options.map((option) => (
             <div key={option.value} onClick={() => handleOptionClick(option.value, option.label)} className='py-2 px-4 cursor-pointer hover:bg-[#303030]'>
               {option.label}

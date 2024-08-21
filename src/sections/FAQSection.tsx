@@ -2,7 +2,7 @@ import FAQDropdown from "../components/FAQDropdown";
 import SmallResponsiveSection from "./SmallResponsiveSection";
 
 interface FAQSectionProps {
-  inView: boolean;
+  inView?: boolean;
 }
 
 const questions = [
@@ -27,12 +27,12 @@ const questions = [
     "Timelines vary for each project. For a quick estimate, just reach out to us through the contact form!"
   ],
   [
-    "Will my website be mobile-friendly?",
+    "Will my website be mobile friendly?",
     "Yes, whether we're updating your existing site or building a new one, we'll ensure it’s designed to be mobile-friendly."
   ],
 ];
 
-const FAQSection: React.FC<FAQSectionProps> = ({ inView }) => {
+const FAQSection: React.FC<FAQSectionProps> = ({ inView = true }) => {
   return (
     <SmallResponsiveSection>
       <div className="mt-[16rem]">
@@ -41,7 +41,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({ inView }) => {
       >
         FAQ
       </h2>
-      <ul className="mt-[2rem]">
+      <ul className="mt-[2rem] flex flex-col space-y-[2rem] sm:space-y-0">
         {
           questions.map(([title, answer], index) => (
             <li key={index} className="pb-[1rem]">

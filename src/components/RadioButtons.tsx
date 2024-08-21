@@ -13,7 +13,7 @@ const RadioButtons: React.FC<RadioButtonsProps> = ({ budgetFields, selectedBudge
           key={field.value}
           type='button'
           onClick={() => setSelectedBudget(field.value)}
-          className={`px-4 py-2 rounded transition-colors border-2 shadow-xl shadow-shadow bg-card hover:bg-[#303030] text-white ${selectedBudget === field.value ? "border-white" : "border-transparent"}`}
+          className={`px-4 py-2 rounded transition-colors border-2 shadow-xl text-[2rem]  sm:text-[1.5rem] lg:text-[1.25rem]  shadow-shadow bg-card hover:bg-[#303030] text-white ${selectedBudget === field.value ? "border-white" : "border-transparent"}`}
         >
           {field.label}
         </button>

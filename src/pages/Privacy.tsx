@@ -1,14 +1,16 @@
 import Footer from "../sections/Footer";
 import LargeLogo from "../components/LargeLogo";
 import Navbar from "../sections/Navbar";
+import ResponsiveSection from "../sections/ResponsiveSection";
 
 function Privacy() {
   return (
     <>
       <Navbar />
       <LargeLogo />
-      <h1 className="text-center">Privacy</h1>
-      <div className="max-w-[60rem] mx-auto mb-60">
+      <ResponsiveSection>
+      <h1 className="text-center mt-[4rem] mb-[15rem]">Privacy</h1>
+      {/* <div className="max-w-[60rem] mx-auto mb-60"> */}
         <h2>Introduction</h2>
         <p>
           At Rise Rapid, we deeply value your privacy and are dedicated to
@@ -132,8 +134,10 @@ function Privacy() {
           <br />
           Help@RiseRapidWebsiteDesign.com
         </p>
-      </div>
+      {/* </div> */}
+      </ResponsiveSection>
       <Footer />
+      
     </>
   );
 }

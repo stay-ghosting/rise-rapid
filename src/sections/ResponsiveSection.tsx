@@ -6,7 +6,7 @@ interface ResponsiveSectionProps {
 
 const ResponsiveSection: React.FC<ResponsiveSectionProps> = ({children}) => {
   return (
-    <div className='mx-[20rem]'>
+    <div className='2xl:mx-[15rem] xl:mx-[13rem] lg:mx-[7rem] sm:mx-[5rem] mx-[6rem]'>
       {children}
     </div>
   );
