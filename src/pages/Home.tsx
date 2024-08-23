@@ -77,20 +77,22 @@ const Home = () => {
       <Navbar />
       {/* hero */}
       <ResponsiveSection>
-        <div className='flex flex-row mt-[12rem]'>
-          <div className='mx-auto sm:mx-0'>
-            <h1 className='mb-[4rem] min-w-[41rem]'>
+        <div className=' flex flex-col-reverse gap-y-[6rem] md:flex-row md:flex-wrap pt-[10rem]'>
+          <div className=''>
+            <h1 className='mb-[4rem] inline'>
               Website Design <br />
               To Make <span className='text-cta'>Your Brand</span> <br />
               Rise Rapid
             </h1>
-            <CtaButton />
+            <div className="mt-[3rem]">
+              <CtaButton />
+            </div>
           </div>
-          <div className='w-[27.178rem] hidden sm:block'>
-            <img className='scale-[200%] translate-x-[9rem] translate-y-[3rem]' src={image_Hero} alt='hero image' />
+          <div className='flex-shrink-0 flex-grow basis-[25.5rem] relative'>
+            <img className='md:scale-[170%] top-[3rem] left-[7rem] md:absolute' src={image_Hero} alt='hero image' />
           </div>
         </div>
-        <div className='hidden sm:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
+        <div className='hidden md:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
           <div className='z-10' onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
             <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
           </div>
