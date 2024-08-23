@@ -84,12 +84,11 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
             {fields.slice(0, 3).map(({ id, name, placeholder, type, autoComplete }, index) => (
               <div
                 key={id}
-                className={`${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}
-              ${id === "service" && "z-10 "}`}
+                className={`${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
                 style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
               >
                 {id === "service" ? (
-                  <div className='z-50'>
+                  <div className=''>
                     <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                   </div>
                 ) : (
@@ -115,15 +114,15 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               {fields.slice(3).map(({ id, name, placeholder, type, autoComplete }, index) => (
                 <div
                   key={id}
-                  className={`${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}
-              ${id === "service" && "z-10 "}`}
+                  className={`${id === 'service' && "relative z-10"} ${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
                   style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
                 >
                   {id === "service" ? (
-                    <div className='z-50'>
+                    <div className=''>
                       <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                     </div>
                   ) : (
+                    <div className="">
                     <InputField
                       id={id}
                       name={name}
@@ -133,6 +132,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
                       placeholder={placeholder}
                       autoComplete={autoComplete}
                     />
+                    </div>
                   )}
                 </div>
               ))}
