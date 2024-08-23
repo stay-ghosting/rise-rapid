@@ -76,6 +76,7 @@ const Home = () => {
       <div className='fixed top-5 left-5 w-[1rem] h-[1rem] sm:bg-red-500 md:bg-amber-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-purple-500'></div>
       <Navbar />
       {/* hero */}
+      <div className="overflow-hidden">
       <ResponsiveSection>
         <div className=' flex flex-col-reverse gap-y-[6rem] md:flex-row md:flex-wrap pt-[10rem]'>
           <div className=''>
@@ -98,12 +99,13 @@ const Home = () => {
           </div>
         </div>
       </ResponsiveSection>
+      </div>
       {/* sevices */}
       <ResponsiveSection>
         <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"} mt-[12rem]`}>
           <span className='text-cta'>Services</span> we offer
         </h2>
-        <div className={`flex-row mt-[4rem] hidden sm:flex`}>
+        <div className={`flex-row mt-[4rem] hidden md:flex`}>
           <ul className=''>
             {services.map(([title, _], index) => (
               <li className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
@@ -137,7 +139,7 @@ const Home = () => {
             <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
           </div>
         </div>
-        <div className='sm:hidden overflow-scroll flex gap-[4rem]'>
+        <div className='md:hidden overflow-scroll flex gap-[4rem]'>
           {services.map(([title, description], index) => (
             <div
               key={index}
