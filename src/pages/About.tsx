@@ -36,7 +36,7 @@ function About() {
         <h1 className='text-center mt-[4rem]'>About Us</h1>
         <div className='pb-[3rem]'>
           {sections.map(({ title, body, image }, index) => (
-            <div key={index} className='my-[5rem] flex flex-col-reverse md:flex-row flex-wrap items-center justify-center'>
+            <div key={index} className='my-[5rem] bg-card  p-[4rem] rounded-md flex flex-col-reverse md:flex-row flex-wrap items-center justify-center'>
               <div className=' grow shrink basis-0 '>
                 <h2 className=''>{title}</h2>
                 <p>{body}</p>
