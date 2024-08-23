@@ -97,7 +97,10 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
                     name={name}
                     type={type}
                     fieldValue={formData[name as keyof FormData] as string}
-                    setFieldValue={([name, value]) => handleInputChange(name as keyof FormData, value)}
+                    setFieldValue={(name, value) => {
+                      console.log(name, value);
+                      handleInputChange(name as keyof FormData, value);
+                    }}
                     placeholder={placeholder}
                     autoComplete={autoComplete}
                   />
@@ -114,7 +117,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               {fields.slice(3).map(({ id, name, placeholder, type, autoComplete }, index) => (
                 <div
                   key={id}
-                  className={`${id === 'service' && "relative z-10"} ${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
+                  className={`${id === "service" && "relative z-10"} ${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
                   style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
                 >
                   {id === "service" ? (
@@ -122,16 +125,19 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
                       <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                     </div>
                   ) : (
-                    <div className="">
-                    <InputField
-                      id={id}
-                      name={name}
-                      type={type}
-                      fieldValue={formData[name as keyof FormData] as string}
-                      setFieldValue={([name, value]) => handleInputChange(name as keyof FormData, value)}
-                      placeholder={placeholder}
-                      autoComplete={autoComplete}
-                    />
+                    <div className=''>
+                      <InputField
+                        id={id}
+                        name={name}
+                        type={type}
+                        fieldValue={formData[name as keyof FormData] as string}
+                        setFieldValue={(name, value) => {
+                          console.log(name, value);
+                          handleInputChange(name as keyof FormData, value);
+                        }}
+                        placeholder={placeholder}
+                        autoComplete={autoComplete}
+                      />
                     </div>
                   )}
                 </div>
