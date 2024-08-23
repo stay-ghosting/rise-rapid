@@ -21,7 +21,7 @@ const steps = [
   ["Grow & Succeed", "Expand your reach and achieve success"],
 ];
 
-const services = [
+const services: [string, string][] = [
   [
     "Bespoke Web Design",
     `At Rise Rapid, we craft tailored websites that reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
@@ -78,13 +78,13 @@ const Home = () => {
       {/* hero */}
       <ResponsiveSection>
         <div className='flex flex-row mt-[12rem]'>
-          <div className="mx-auto sm:mx-0">
+          <div className='mx-auto sm:mx-0'>
             <h1 className='mb-[4rem] min-w-[41rem]'>
               Website Design <br />
               To Make <span className='text-cta'>Your Brand</span> <br />
               Rise Rapid
             </h1>
-              <CtaButton />
+            <CtaButton />
           </div>
           <div className='w-[27.178rem] hidden sm:block'>
             <img className='scale-[200%] translate-x-[9rem] translate-y-[3rem]' src={image_Hero} alt='hero image' />
@@ -101,8 +101,8 @@ const Home = () => {
         <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"} mt-[12rem]`}>
           <span className='text-cta'>Services</span> we offer
         </h2>
-        <div className={`flex flex-row mt-[4rem]`}>
-          <ul className="hidden sm:block">
+        <div className={`flex-row mt-[4rem] hidden sm:flex`}>
+          <ul className=''>
             {services.map(([title, _], index) => (
               <li className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
                 <button
@@ -135,34 +135,51 @@ const Home = () => {
             <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
           </div>
         </div>
+        <div className='sm:hidden overflow-scroll flex gap-[4rem]'>
+          {services.map(([title, description], index) => (
+            <div
+              key={index}
+              className={`grow bg-card shadow-lg shadow-shaddow min-h-[36rem] rounded-lg pt-[2rem] px-[4rem] flex-shrink-0 w-[80%]
+              ${isServicesInView ? "fade-in" : "fade-in-hidden"}`}
+            >
+              <div className='absolute bottom-8 right-8'>
+                <CtaButton />
+              </div>
+              <img className='absolute bottom-0 right-0 rounded-lg -z-10' src={image_servicesColorSplash} />
+              <h3>{title}</h3>
+              <br />
+              <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: description }}></p>
+            </div>
+          ))}
+        </div>
       </ResponsiveSection>
       {/* steps */}
       <div className='bg-[#45086F] py-[7rem] mt-[10rem]'>
         <ResponsiveSection>
-          <div className="py-[4rem] sm:py-0">
-          <h2 ref={stepsRef} className={`sm:text-center sm:px-0 mb-[4rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}>
-            Concept to Creation in 3 Steps...
-          </h2>
-          <ul className='flex flex-col space-y-[3rem] sm:space-y-0 items-center sm:items-start sm:flex-row justify-between'>
-            {steps.map(([title, description], index) => (
-              <>
-                <div key={index * 2} className={`sm:w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
-                  <p className='text-center text-[7rem] font-semibold sm:text-[4rem] text-white sm:font-bold'>{index + 1}.</p>
-                  <h3 className='text-center text-[5rem] sm:text-[2rem]'>{title}</h3>
-                  <p className='text-center max-w-[50rem] sm:max-w-[40rem]'>{description}</p>
-                </div>
-                {index != 2 && (
-                  <div
-                    key={index * 2 + 1}
-                    className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}
-                    style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}
-                  >
-                    <p className='hidden sm:block text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
+          <div className='py-[4rem] sm:py-0'>
+            <h2 ref={stepsRef} className={`sm:text-center sm:px-0 mb-[4rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}>
+              Concept to Creation in 3 Steps...
+            </h2>
+            <ul className='flex flex-col space-y-[3rem] sm:space-y-0 items-center sm:items-start sm:flex-row justify-between'>
+              {steps.map(([title, description], index) => (
+                <>
+                  <div key={index * 2} className={`sm:w-[19rem] ${isStepsInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `${(index + 1) * 0.5}s` }}>
+                    <p className='text-center text-[7rem] font-semibold sm:text-[4rem] text-white sm:font-bold'>{index + 1}.</p>
+                    <h3 className='text-center text-[5rem] sm:text-[2rem]'>{title}</h3>
+                    <p className='text-center max-w-[50rem] sm:max-w-[40rem]'>{description}</p>
                   </div>
-                )}
-              </>
-            ))}
-          </ul>
+                  {index != 2 && (
+                    <div
+                      key={index * 2 + 1}
+                      className={`flex items-center ${isStepsInView ? "fade-in" : "fade-in-hidden"}`}
+                      style={{ animationDelay: `${(index + 1) * 0.5 + 0.25}s` }}
+                    >
+                      <p className='hidden sm:block text-center text-[4rem] pt-[2rem] text-white font-semibold'>{">"}</p>
+                    </div>
+                  )}
+                </>
+              ))}
+            </ul>
           </div>
         </ResponsiveSection>
       </div>
