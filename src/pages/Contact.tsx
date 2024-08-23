@@ -10,7 +10,9 @@ function Contact() {
       <div className='pt-[5rem]'>
         <GetInTouchSection />
       </div>
+      <div className="mb-[10rem]">
       <FAQSection />
+      </div>
       <Footer />
     </>
   );

@@ -35,21 +35,25 @@ function About() {
       <ResponsiveSection>
         <h1 className='text-center mt-[4rem]'>About Us</h1>
         <div className='pb-[3rem]'>
-        {sections.map(({ title, body, image }, index) => (
-          <div key={index} className='my-[5rem] flex flex-col sm:flex-row flex-wrap items-center justify-center'>
-            <div className='sm:min-w-[40rem] grow shrink basis-[10rem]'>
-              <h2 className=''>{title}</h2>
-              <p>{body}</p>
-            </div> 
-            <div className='max-w-full basis-[15rem] flex-shrink-0 grow'>
-              <img src={image} alt={title + " image"} className='object-cover max-w-full h-auto mx-auto' />
+          {sections.map(({ title, body, image }, index) => (
+            <div key={index} className='my-[5rem] flex flex-col-reverse md:flex-row flex-wrap items-center justify-center'>
+              <div className=' grow shrink basis-0 '>
+                <h2 className=''>{title}</h2>
+                <p>{body}</p>
+              </div>
+              <div className='basis-[20rem] min-w-[9rem] h-auto grow md:max-w-[28rem]'>
+                <img src={image} alt={title + " image"} className='object-cover w-full h-auto' />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
       </ResponsiveSection>
-      <FAQSection />
-      <GetInTouchSection />
+      <div className='mb-[10rem]'>
+        <FAQSection />
+      </div>
+      <div className='mb-[10rem]'>
+        <GetInTouchSection />
+      </div>
       <Footer />
     </>
   );
