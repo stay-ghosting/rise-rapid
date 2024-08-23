@@ -4,14 +4,16 @@ import FAQSection from "../sections/FAQSection";
 import GetInTouchSection from "../sections/GetInTouchSection";
 
 function Contact() {
-    return (
-        <>
-            <Navbar />
-            <GetInTouchSection />
-            <FAQSection />
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <div className='pt-[5rem]'>
+        <GetInTouchSection />
+      </div>
+      <FAQSection />
+      <Footer />
+    </>
+  );
 }
 
 export default Contact;

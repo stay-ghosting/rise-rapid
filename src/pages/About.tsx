@@ -8,7 +8,6 @@ import image_ourStory from "../assets/images/about us/our story.png";
 import image_ourMission from "../assets/images/about us/our mission.png";
 import FAQSection from "../sections/FAQSection";
 import ResponsiveSection from "../sections/ResponsiveSection";
-import SmallResponsiveSection from "../sections/SmallResponsiveSection";
 
 const sections = [
   {
@@ -35,25 +34,18 @@ function About() {
       <LargeLogo />
       <ResponsiveSection>
         <h1 className='text-center mt-[4rem]'>About Us</h1>
-        <div className='flex flex-col items-center space-y-12 pb-[8rem]'>
-          {sections.map(({ title, body, image }, index) => (
-            <div className="flex flex-row mt-[15rem]">
-              <div key={index} className='flex flex-col items-center'>
-                <div>
-                  <h2 className='w-full'>{title}</h2>
-                  <div className='flex flex-col items-center'>
-                    <p>{body}</p>
-                    <div className='mt-[4rem] inline sm:hidden'>
-                      <img src={image} alt={title + " image"} className='object-cover max-w-[80rem] w-auto h-auto ' />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='hidden sm:block'>
-                <img src={image} alt={title + " image"} className='object-cover max-w-md w-auto h-auto ' />
-              </div>
+        <div className='pb-[3rem]'>
+        {sections.map(({ title, body, image }, index) => (
+          <div key={index} className='my-[5rem] flex flex-col sm:flex-row flex-wrap items-center justify-center'>
+            <div className='sm:min-w-[40rem] grow shrink basis-[10rem]'>
+              <h2 className=''>{title}</h2>
+              <p>{body}</p>
+            </div> 
+            <div className='max-w-full basis-[15rem] flex-shrink-0 grow'>
+              <img src={image} alt={title + " image"} className='object-cover max-w-full h-auto mx-auto' />
             </div>
-          ))}
+          </div>
+        ))}
         </div>
       </ResponsiveSection>
       <FAQSection />
