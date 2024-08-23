@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -7,18 +7,37 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Blog from "./pages/Blog";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/privacy",
+    element: <Privacy />,
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
+  },
+  {
+    path: "/blog",
+    element: <Blog />,
+  },
+]);
+
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<About />} path="/about" />
-        <Route element={<Contact />} path="/contact" />
-        <Route element={<Privacy />} path="/privacy" />
-        <Route element={<Terms />} path="/terms" />
-        <Route element={<Blog />} path="/blog" />
-      </Routes>
-    </Router>
+    <RouterProvider router={router} />
   );
 }
 
