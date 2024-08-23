@@ -35,14 +35,14 @@ const Footer = () => {
           <CustomNavLink link='/terms' text='Terms' />
           <CustomNavLink link='/privacy' text='Privacy' />
         </ul>
-        <div className='relative mt-[11rem] mb-[6rem]  flex flex-col justify-center'>
-          <div className='absolute -left-[27rem] -top-[7rem]'>
-            <p className='text-white text-[4rem] font-bold leading-[6rem]'>
-              NEWSLETTER <br />
-              <span className='text-cta'>SIGNUP</span>
+        <div className='relative md:mt-[11rem] mb-[6rem]  flex flex-col justify-center items-center'>
+          <div className=' md:absolute -left-[9rem] -top-[7rem]'>
+            <p className='mt-[3rem] mb-[2rem] md:my-0 text-white text-[4rem] font-bold leading-[6rem]'>
+              NEWSLETTER
+              <span className='text-cta md:block'> SIGNUP</span>
             </p>
           </div>
-          <div className='w-[36rem] relative'>
+          <div className='w-[36rem]  relative'>
             <form action=''>
               <input type='image' src={icon_submitArrow} className='cursor-pointer p-[1rem] w-[4.5rem] absolute right-2 top-2' />
               <InputField
