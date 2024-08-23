@@ -4,6 +4,7 @@ import image_Hero from "../assets/images/hero image.png";
 // import icon_arrow from "../assets/icons/arrow.svg";
 import icon_arrow_dark from "../assets/icons/home/next section arrow/dark grey.svg";
 import icon_arrow from "../assets/icons/home/next section arrow/light gray.svg";
+import icon_arrowRight from "../assets/icons/arrow right.svg";
 import image_servicesColorSplash from "../assets/images/services color splash.png";
 
 import Footer from "../sections/Footer";
@@ -21,30 +22,36 @@ const steps = [
   ["Grow & Succeed", "Expand your reach and achieve success"],
 ];
 
-const services: [string, string][] = [
+const services: [string, string, string][] = [
   [
     "Bespoke Web Design",
     `At Rise Rapid, we craft tailored websites that reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
+    `Custom designs that stand out and drive results.`,
   ],
   [
     "Bespoke Graphic Design",
     `At Rise Rapid, we specialise in custom graphic design that embodies your brand’s distinct personality and goals. We work closely with you to capture your vision and ensure every design element is tailored to your needs.<br /><br /> From initial ideas to final visuals, we deliver unique and impactful designs that enhance your brand and engage your audience.`,
+    `unique and impactful designs that enhance your brand.`,
   ],
   [
     "SEO Optimisation",
     `At Rise Rapid, we enhance your website’s visibility with tailored SEO strategies. Our team carefully analyses your site and implements effective optimisation techniques to improve search engine rankings.<br /><br /> From keyword research to on-page and off-page SEO, we focus on driving organic traffic and boosting your online presence.`,
+    `Drive organic traffic and boost your online presence.`,
   ],
   [
     "Social Media Integration",
     `At Rise Rapid, we seamlessly integrate your website with your social media platforms. Our approach ensures that your social media feeds, sharing buttons, and profiles are fully connected to your site.<br /><br /> This integration helps boost your online presence, engage your audience, and create a cohesive brand experience across all channels.`,
+    `Boost your online presence and engage your audience.`,
   ],
   [
     "Email Marketing",
     `At Rise Rapid, we create and manage effective email marketing campaigns that connect with your audience. From designing engaging templates to crafting compelling content, we ensure your messages resonate and drive action.<br /><br />Our approach includes list management, targeted campaigns, and performance tracking to maximise your email marketing impact and achieve your business goals.`,
+    `Maximise your reach with email marketing.`,
   ],
   [
     "Copywriting",
     `At Rise Rapid, we craft compelling and clear copy that communicates your brand’s message effectively. Our skilled team creates engaging content for websites, blogs, and marketing materials, tailored to resonate with your target audience.<br /><br /> From persuasive product descriptions to informative articles, we ensure every word aligns with your brand’s voice and drives meaningful results.`,
+    `Give your brand a personality that ressonates with customers .`,
   ],
 ];
 
@@ -76,36 +83,51 @@ const Home = () => {
       <div className='fixed top-5 left-5 w-[1rem] h-[1rem] sm:bg-red-500 md:bg-amber-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-purple-500'></div>
       <Navbar />
       {/* hero */}
-      <div className="overflow-hidden">
-      <ResponsiveSection>
-        <div className=' flex flex-col-reverse gap-y-[6rem] md:flex-row md:flex-wrap pt-[10rem]'>
-          <div className=''>
-            <h1 className='mb-[4rem] inline'>
-              Website Design <br />
-              To Make <span className='text-cta'>Your Brand</span> <br />
-              Rise Rapid
-            </h1>
-            <div className="mt-[3rem]">
-              <CtaButton />
+      <div className='overflow-hidden'>
+        <ResponsiveSection>
+          <div className=' flex flex-col-reverse gap-y-[6rem] md:flex-row md:flex-wrap pt-[10rem]'>
+            <div className=''>
+              <h1 className='mb-[4rem] inline'>
+                Website Design <br />
+                To Make <span className='text-cta inline-block'>Your Brand</span> <br />
+                Rise Rapid
+              </h1>
+              <div className='mt-[3rem]'>
+                <CtaButton />
+              </div>
+            </div>
+            <div className='flex-shrink-0 flex-grow basis-[25.5rem] relative'>
+              <img className='md:scale-[170%] top-[3rem] left-[7rem] md:absolute' src={image_Hero} alt='hero image' />
             </div>
           </div>
-          <div className='flex-shrink-0 flex-grow basis-[25.5rem] relative'>
-            <img className='md:scale-[170%] top-[3rem] left-[7rem] md:absolute' src={image_Hero} alt='hero image' />
+          <div className='hidden md:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
+            <div className='z-10' onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
+              <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
+            </div>
           </div>
-        </div>
-        <div className='hidden md:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
-          <div className='z-10' onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
-            <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
-          </div>
-        </div>
-      </ResponsiveSection>
+        </ResponsiveSection>
       </div>
       {/* sevices */}
       <ResponsiveSection>
         <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"} mt-[12rem]`}>
           <span className='text-cta'>Services</span> we offer
         </h2>
-        <div className={`flex-row mt-[4rem] hidden md:flex`}>
+        <div className='grid md:grid-cols-3 gap-[1rem]'>
+          {services.map(([title, description, shortDescription], index) => (
+            <div
+              key={index}
+              className={`${isServicesInView ? "fade-right" : "fade-in-hidden"} 
+              overflow-hidden p-[1rem] min-h-[15rem] bg-card rotate-45`}
+              style={{ animationDelay: `${0}ms` }}
+            >
+              <img className='absolute bottom-0 -right-[3rem] rounded-lg -z-10 w-[17rem]' src={image_servicesColorSplash} />
+              <img className='brightness-[0.8] absolute bottom-[0.75rem] right-[1.5rem] rounded-lg -z-10 w-[2rem] ' src={icon_arrowRight} />
+              <p className={` text-white font-semibold text-left`}>{title}</p>
+              <p>{shortDescription}</p>
+            </div>
+          ))}
+        </div>
+        {/* <div className={`flex-row mt-[4rem] hidden md:flex`}>
           <ul className=''>
             {services.map(([title, _], index) => (
               <li className={`${isServicesInView ? "fade-in" : "fade-in-hidden"}`} style={{ animationDelay: `400ms` }}>
@@ -138,8 +160,8 @@ const Home = () => {
             <br />
             <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: services[serviceIndex][1] }}></p>
           </div>
-        </div>
-        <div className='md:hidden overflow-scroll flex gap-[4rem]'>
+        </div> */}
+        {/* <div className='md:hidden overflow-scroll flex gap-[4rem]'>
           {services.map(([title, description], index) => (
             <div
               key={index}
@@ -155,7 +177,7 @@ const Home = () => {
               <p className='mb-[7rem]' dangerouslySetInnerHTML={{ __html: description }}></p>
             </div>
           ))}
-        </div>
+        </div> */}
       </ResponsiveSection>
       {/* steps */}
       <div className='bg-[#45086F] py-[7rem] mt-[10rem]'>
