@@ -44,7 +44,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className='h-32 w-full flex flex-row justify-between items-center px-32 mt-[2rem] md:mt-0'>
+      <nav className='relative z-20 bg-[#151517] h-32 w-full flex flex-row justify-between items-center px-32 pb-[2rem] pt-[2rem] md:pt-0'>
         <div onClick={toggleDropdown} ref={handburgerRef}>
           <img src={icon_hanburger} className='cursor-pointer md:hidden w-[3.5rem] h-[3.5rem] object-cover' alt='menu' />
         </div>
@@ -60,23 +60,24 @@ const Navbar = () => {
         </div>
         {location.pathname != "/contact" && <CtaButton />}
       </nav>
-      <div className='relative z-10' ref={dropdownRef}>
-        {isOpen && (
-          <ul className='absolute w-full bg-card text-white text-[1.5rem] lg:text-[1.25rem] rounded-b-[0.375rem]'>
-            {navLinks.map(({ link, text }, index) => (
-              <CustomNavLink
-                className={`border-[#303030] p-[1rem] w-full hover:bg-[#303030] ${index != navLinks.length - 1 && "border-b"}`}
-                onClick={() => {
-                  console.log("this ran");
-                  setIsOpen(false);
-                }}
-                key={link}
-                link={link}
-                text={text}
-              />
-            ))}
-          </ul>
-        )}
+      <div className={`relative z-10`} ref={dropdownRef}>
+        <ul
+          className={`absolute md:hidden w-full bg-card text-white text-[1.5rem] lg:text-[1.25rem] rounded-b-[0.375rem]
+      ${isOpen ? "dropdown-show" : "dropdown-hide"}`}
+        >
+          {navLinks.map(({ link, text }, index) => (
+            <CustomNavLink
+              className={`border-[#303030] p-[1rem] w-full hover:bg-[#303030] ${index !== navLinks.length - 1 ? "border-b" : ""}`}
+              onClick={() => {
+                console.log("this ran");
+                setIsOpen(false);
+              }}
+              key={link}
+              link={link}
+              text={text}
+            />
+          ))}
+        </ul>
       </div>
     </>
   );

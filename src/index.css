@@ -89,7 +89,7 @@ p {
   line-height: 200%;
 }
 
-input, select, button, a {
+input, select, button, a, .input {
   font-size: 3rem;
   @screen sm{
     font-size: 1.25rem;
