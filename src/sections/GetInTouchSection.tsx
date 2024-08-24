@@ -84,8 +84,8 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
             {fields.slice(0, 3).map(({ id, name, placeholder, type, autoComplete }, index) => (
               <div
                 key={id}
-                className={`${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
-                style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
+                className={`${inView ? "fade-right" : "fade-in-hidden"}`}
+                style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}
               >
                 {id === "service" ? (
                   <div className=''>
@@ -117,8 +117,8 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               {fields.slice(3).map(({ id, name, placeholder, type, autoComplete }, index) => (
                 <div
                   key={id}
-                  className={`${id === "service" && "relative z-10"} ${inView ? (index % 2 === 0 ? "fade-right" : "fade-left") : "fade-in-hidden"}`}
-                  style={{ animationDelay: `${800 + Math.floor(index / 2) * 200}ms` }}
+                  className={`${id === "service" && "relative z-10"} ${inView ? "fade-left" : "fade-in-hidden"}`}
+                  style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}
                 >
                   {id === "service" ? (
                     <div className=''>
