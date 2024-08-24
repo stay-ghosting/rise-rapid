@@ -28,12 +28,12 @@ const Footer = () => {
     <div className='bg-[#151515] pb-6 flex flex-col items-center '>
       <div className='hidden sm:block px-16'>
         <ul className='flex space-x-[5rem] text-white font-extralight mt-16'>
-          <CustomNavLink link='/' text='Home' />
-          <CustomNavLink link='/contact' text='Contact' />
-          <CustomNavLink link='/about' text='About' />
-          <CustomNavLink link='/blog' text='Blog' />
-          <CustomNavLink link='/terms' text='Terms' />
-          <CustomNavLink link='/privacy' text='Privacy' />
+          <CustomNavLink link='/' text='Home' key="1"/>
+          <CustomNavLink link='/contact' text='Contact' key="2"/>
+          <CustomNavLink link='/about' text='About' key="3"/>
+          <CustomNavLink link='/blog' text='Blog' key="4"/>
+          <CustomNavLink link='/terms' text='Terms' key="5"/>
+          <CustomNavLink link='/privacy' text='Privacy' key="6"/>
         </ul>
         <div className='relative md:mt-[11rem] mb-[6rem]  flex flex-col justify-center items-center'>
           <div className=' md:absolute -left-[9rem] -top-[7rem]'>
@@ -87,12 +87,12 @@ const Footer = () => {
           </form>
         </div>
         <ul className='flex flex-col items-center space-y-[1rem] text-white font-extralight mt-16'>
-          <CustomNavLink link='/' text='Home' />
-          <CustomNavLink link='/contact' text='Contact' />
-          <CustomNavLink link='/about' text='About' />
-          <CustomNavLink link='/blog' text='Blog' />
-          <CustomNavLink link='/terms' text='Terms' />
-          <CustomNavLink link='/privacy' text='Privacy' />
+          <CustomNavLink link='/' text='Home' key="1"/>
+          <CustomNavLink link='/contact' text='Contact' key="2"/>
+          <CustomNavLink link='/about' text='About' key="3"/>
+          <CustomNavLink link='/blog' text='Blog' key="4"/>
+          <CustomNavLink link='/terms' text='Terms' key="5"/>
+          <CustomNavLink link='/privacy' text='Privacy' key="6"/>
         </ul>
 
         <div className='border-[#505050] border-b w-full'></div>
