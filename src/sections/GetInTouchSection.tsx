@@ -4,6 +4,9 @@ import Dropdown from "../components/InputDropdown";
 import RadioButtons from "../components/RadioButtons";
 import CustomCheckbox from "../components/Checkbox";
 import ResponsiveSection from "./ResponsiveSection";
+
+import { services } from "../assets/data/services";
+
 const fields = [
   { id: "full-name", name: "fullName", placeholder: "Full Name*", type: "text", autoComplete: "name" },
   { id: "email", name: "email", placeholder: "Email*", type: "email", autoComplete: "email" },
@@ -12,16 +15,6 @@ const fields = [
   { id: "business-name", name: "businessName", placeholder: "Business Name*", type: "text", autoComplete: "organization" },
   { id: "service", name: "service", placeholder: "Service*", type: "text", autoComplete: "off" },
   { id: "brief-description", name: "briefDescription", placeholder: "Brief Description*", type: "text", autoComplete: "off" },
-];
-
-const services = [
-  { label: "Bespoke Web Design", value: "bespokeWebDesign" },
-  { label: "Bespoke Graphic Design", value: "bespokeGraphicDesign" },
-  { label: "SEO Optimisation", value: "seoOptimisation" },
-  { label: "Social Media Integration", value: "socialMediaIntegration" },
-  { label: "Email Marketing", value: "emailMarketing" },
-  { label: "Copywriting", value: "copywriting" },
-  { label: "Other", value: "other" },
 ];
 
 const budgetField = [
@@ -55,9 +48,11 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true, serviceId }
   });
 
   const getServiceLable = (value: string) => {
-    const service = services.find(service => service.value === value)
-    return service ? service.label : ''
+    const service = services.find(service => service.id === value)
+    return service ? service.title : ''
   }
+
+  const serviceOptions = services.map(service => ({label: service.title, value: service.id}))
 
   useEffect(() => {
     console.log(serviceId);
@@ -99,7 +94,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true, serviceId }
               <div key={id} className={`${inView ? "fade-right" : "fade-in-hidden"}`} style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}>
                 {id === "service" ? (
                   <div className=''>
-                    <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
+                    <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={serviceOptions} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                   </div>
                 ) : (
                   <InputField
@@ -132,7 +127,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true, serviceId }
                 >
                   {id === "service" ? (
                     <div className=''>
-                      <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
+                      <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={serviceOptions} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                     </div>
                   ) : (
                     <div className=''>
