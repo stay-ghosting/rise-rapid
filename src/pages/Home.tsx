@@ -58,10 +58,10 @@ const services: [string, string, string][] = [
 const Home = () => {
   const [serviceIndex, setServiceIndex] = useState(0);
 
-  const [servicesRef, isServicesInView] = useInView<HTMLDivElement>(220);
-  const [stepsRef, isStepsInView] = useInView<HTMLHeadingElement>(0);
-  const [FAQRef, isFAQInView] = useInView<HTMLDivElement>(300);
-  const [getInTouchRef, isGetInTouchView] = useInView<HTMLDivElement>(200);
+  const [servicesRef, isServicesInView] = useInView<HTMLDivElement>(5);
+  const [stepsRef, isStepsInView] = useInView<HTMLHeadingElement>(5);
+  const [FAQRef, isFAQInView] = useInView<HTMLDivElement>(1);
+  const [getInTouchRef, isGetInTouchView] = useInView<HTMLDivElement>(5);
 
   const [isScrollButtonHovered, setIsScrollButtonHovered] = useState(false);
 
