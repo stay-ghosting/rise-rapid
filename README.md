@@ -1,12 +1,9 @@
 
 ## TODO
 # in order
-10. try and make a card section for services
-11. use vw for text size
-12. make input field title go to the top on focus
-14. remove debug tools
-15. fix carousel
+- make services go to a page explaining the services
+- stop form from getting spamed
+- remove debug tools
 
 
 # when mat comes back
-- create checkbox graphics

@@ -45,8 +45,8 @@ const Navbar = () => {
   return (
     <>
       <nav className='relative z-20 bg-[#151517] h-32 w-full flex flex-row justify-between items-center px-32 pb-[2rem] pt-[2rem] md:pt-0'>
-        <div onClick={toggleDropdown} ref={handburgerRef}>
-          <img src={icon_hanburger} className='cursor-pointer md:hidden w-[3.5rem] h-[3.5rem] object-cover' alt='menu' />
+        <div onClick={toggleDropdown} ref={handburgerRef} className="md:hidden">
+          <img src={icon_hanburger} className='cursor-pointer  w-[3.5rem] h-[3.5rem] object-cover' alt='menu' />
         </div>
         <div className='flex flex-rocursor-pointer cursor-pointer w items-center md:justify-start'>
           <div onClick={handleLogoClick}>
