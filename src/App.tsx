@@ -19,6 +19,12 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+    children: [
+      {
+        path: ':serviceId',
+        element: <Contact />
+      }
+    ]
   },
   {
     path: "/privacy",

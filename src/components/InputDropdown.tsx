@@ -11,7 +11,7 @@ interface CustomDropdownProps {
 
 const CustomDropdown: React.FC<CustomDropdownProps> = ({ id, name, placeholder, options, setFieldValue, inView = true }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLabel, setSelectedLabel] = useState<string>(placeholder);
+  const [selectedLabel, setSelectedLabel] = useState<string>();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 

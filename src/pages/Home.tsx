@@ -15,6 +15,7 @@ import { useState } from "react";
 import CtaButton from "../components/CtaButton";
 import ResponsiveSection from "../sections/ResponsiveSection";
 import useInView from "../hooks/useInView";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   ["Plan & Design", "Define clear goals and create strategies."],
@@ -22,41 +23,47 @@ const steps = [
   ["Grow & Succeed", "Expand your reach and achieve success"],
 ];
 
-const services: [string, string, string][] = [
+const services: [string, string, string, string][] = [
   [
     "Bespoke Web Design",
     `At Rise Rapid, we craft tailored websites that reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
     `Custom designs that stand out and drive results.`,
+    "/contact/bespokeWebDesign",
   ],
   [
     "Bespoke Graphic Design",
     `At Rise Rapid, we specialise in custom graphic design that embodies your brand’s distinct personality and goals. We work closely with you to capture your vision and ensure every design element is tailored to your needs.<br /><br /> From initial ideas to final visuals, we deliver unique and impactful designs that enhance your brand and engage your audience.`,
     `unique and impactful designs that enhance your brand.`,
+    "/contact/bespokeGraphicDesign",
   ],
   [
     "SEO Optimisation",
     `At Rise Rapid, we enhance your website’s visibility with tailored SEO strategies. Our team carefully analyses your site and implements effective optimisation techniques to improve search engine rankings.<br /><br /> From keyword research to on-page and off-page SEO, we focus on driving organic traffic and boosting your online presence.`,
     `Drive organic traffic and boost your online presence.`,
+    "/contact/seoOptimisation",
   ],
   [
     "Social Media Integration",
     `At Rise Rapid, we seamlessly integrate your website with your social media platforms. Our approach ensures that your social media feeds, sharing buttons, and profiles are fully connected to your site.<br /><br /> This integration helps boost your online presence, engage your audience, and create a cohesive brand experience across all channels.`,
     `Boost your online presence and engage your audience.`,
+    "/contact/socialMediaIntegration",
   ],
   [
     "Email Marketing",
     `At Rise Rapid, we create and manage effective email marketing campaigns that connect with your audience. From designing engaging templates to crafting compelling content, we ensure your messages resonate and drive action.<br /><br />Our approach includes list management, targeted campaigns, and performance tracking to maximise your email marketing impact and achieve your business goals.`,
     `Maximise your reach with email marketing.`,
+    "/contact/emailMarketing",
   ],
   [
     "Copywriting",
     `At Rise Rapid, we craft compelling and clear copy that communicates your brand’s message effectively. Our skilled team creates engaging content for websites, blogs, and marketing materials, tailored to resonate with your target audience.<br /><br /> From persuasive product descriptions to informative articles, we ensure every word aligns with your brand’s voice and drives meaningful results.`,
     `Give your brand a unique personality.`,
+    "/contact/copywriting",
   ],
 ];
 
 const Home = () => {
-  const [serviceIndex, setServiceIndex] = useState(0);
+  // const [serviceIndex, setServiceIndex] = useState(0);
 
   const [servicesRef, isServicesInView] = useInView<HTMLDivElement>(5);
   const [stepsRef, isStepsInView] = useInView<HTMLHeadingElement>(5);
@@ -64,6 +71,13 @@ const Home = () => {
   const [getInTouchRef, isGetInTouchView] = useInView<HTMLDivElement>(5);
 
   const [isScrollButtonHovered, setIsScrollButtonHovered] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (location: string) => {
+    navigate(location);
+    window.scroll(0, 0);
+  };
 
   const scroll = () => {
     if (servicesRef.current) {
@@ -100,8 +114,13 @@ const Home = () => {
               <img className='md:scale-[170%] top-[3rem] left-[7rem] md:absolute' src={image_Hero} alt='hero image' />
             </div>
           </div>
-          <div className='hidden md:flex flex-row justify-center mt-[5rem]' >
-            <div className='z-10 scale-90 hover:scale-100 transition-all cursor-pointer' onClick={scroll} onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
+          <div className='hidden md:flex flex-row justify-center mt-[5rem]'>
+            <div
+              className='z-10 scale-90 hover:scale-100 transition-all cursor-pointer'
+              onClick={scroll}
+              onMouseEnter={() => setIsScrollButtonHovered(true)}
+              onMouseLeave={() => setIsScrollButtonHovered(false)}
+            >
               <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
             </div>
           </div>
@@ -113,12 +132,12 @@ const Home = () => {
           <span className='text-cta'>Services</span> we offer
         </h2>
         <div className='grid md:grid-cols-3 gap-[1rem]'>
-          {services.map(([title, description, shortDescription], index) => (
+          {services.map(([title, description, shortDescription, url], index) => (
             <div key={index} className={`${isServicesInView ? "fade-right" : "fade-in-hidden "} relative hover:z-30`} style={{ animationDelay: `${0}ms` }}>
-              <div className='service-card relative  bg-card p-[1rem] min-h-[15rem] overflow-hidden'>
+              <div className='service-card relative  bg-card p-[1rem] min-h-[15rem] overflow-hidden' onClick={() => handleNavigate(url)}>
                 <img className='shape absolute bottom-0 z-10 -right-[3rem] rounded-lg w-[17rem]' src={image_servicesColorSplash} />
                 <img className='brightness-[0.8] absolute bottom-[0.75rem] right-[1.5rem] rounded-lg z-20  w-[2rem] ' src={icon_arrowRight} />
-                <div className="relative z-20">
+                <div className='relative z-20'>
                   <p className={` text-white font-semibold text-left`}>{title}</p>
                   <p>{shortDescription}</p>
                 </div>

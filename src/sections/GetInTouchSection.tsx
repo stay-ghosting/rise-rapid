@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../components/InputField";
 import Dropdown from "../components/InputDropdown";
 import RadioButtons from "../components/RadioButtons";
@@ -15,11 +15,11 @@ const fields = [
 ];
 
 const services = [
-  { label: "Bespoke Web Design", value: "bespoke_web_design" },
-  { label: "Bespoke Graphic Design", value: "bespoke_graphic_design" },
-  { label: "SEO Optimisation", value: "seo_optimisation" },
-  { label: "Social Media Integration", value: "social_media_integration" },
-  { label: "Email Marketing", value: "email_marketing" },
+  { label: "Bespoke Web Design", value: "bespokeWebDesign" },
+  { label: "Bespoke Graphic Design", value: "bespokeGraphicDesign" },
+  { label: "SEO Optimisation", value: "seoOptimisation" },
+  { label: "Social Media Integration", value: "socialMediaIntegration" },
+  { label: "Email Marketing", value: "emailMarketing" },
   { label: "Copywriting", value: "copywriting" },
   { label: "Other", value: "other" },
 ];
@@ -31,6 +31,7 @@ const budgetField = [
 ];
 interface FileNameProps {
   inView?: boolean;
+  serviceId?: string;
 }
 
 interface FormData {
@@ -42,7 +43,7 @@ interface FormData {
   budget: string;
   isSubscribed: boolean;
 }
-const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
+const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true, serviceId }) => {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     businessName: "",
@@ -52,6 +53,19 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
     budget: "",
     isSubscribed: false,
   });
+
+  const getServiceLable = (value: string) => {
+    const service = services.find(service => service.value === value)
+    return service ? service.label : ''
+  }
+
+  useEffect(() => {
+    console.log(serviceId);
+    
+    if (serviceId) {
+      handleInputChange("service", serviceId)
+    }
+  }, [serviceId]);
 
   const handleInputChange = (name: keyof FormData, value: string) => {
     setFormData((prevState) => {
@@ -85,7 +99,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               <div key={id} className={`${inView ? "fade-right" : "fade-in-hidden"}`} style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}>
                 {id === "service" ? (
                   <div className=''>
-                    <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
+                    <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                   </div>
                 ) : (
                   <InputField
@@ -118,7 +132,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
                 >
                   {id === "service" ? (
                     <div className=''>
-                      <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
+                      <Dropdown id={id} name={name} placeholder={getServiceLable(formData.service) || placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
                     </div>
                   ) : (
                     <div className=''>
@@ -165,7 +179,10 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               <CustomCheckbox id={"is-Subscribed"} name={"isSubscribed"} onChange={(name) => handleCheckboxChange(name as keyof FormData)} checked={formData.isSubscribed} />
               <p className='inline ml-[1rem] text-[2rem] sm:text-[1.25rem]'>Subscribe to our newsletter</p>
             </div>
-            <button className=' m-auto bg-cta hover:bg-cta-hover h-[6rem] sm:h-14 w-60 flex items-center justify-center px-9 rounded-md shadow-xl shadow-shaddow text-white font-semibold' type='submit'>
+            <button
+              className=' m-auto bg-cta hover:bg-cta-hover h-[6rem] sm:h-14 w-60 flex items-center justify-center px-9 rounded-md shadow-xl shadow-shaddow text-white font-semibold'
+              type='submit'
+            >
               Send
               <div className='inline-block  overflow-hidden arrow'>
                 <span className='text-[2em] '>⭢</span>
