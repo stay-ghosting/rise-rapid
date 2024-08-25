@@ -16,8 +16,14 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+    const [hasBeenOpen, setHasBeenOpen] = useState(false);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen((prev) => {
+    if (!prev) {
+      setHasBeenOpen(true)
+    }
+    return !prev
+  });
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const handburgerRef = useRef<HTMLDivElement | null>(null);
@@ -29,6 +35,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    setHasBeenOpen(false);
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -63,7 +71,7 @@ const Navbar = () => {
       <div className={`relative z-10`} ref={dropdownRef}>
         <ul
           className={`absolute md:hidden w-full bg-card text-white text-[1.5rem] lg:text-[1.25rem] rounded-b-[0.375rem]
-      ${isOpen ? "dropdown-show" : "dropdown-hide"}`}
+      ${hasBeenOpen ? (isOpen ? "dropdown-show" : "dropdown-hide") : "hidden" }` }
         >
           {navLinks.map(({ link, text }, index) => (
             <CustomNavLink

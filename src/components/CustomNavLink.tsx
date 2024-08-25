@@ -20,8 +20,10 @@ const CustomNavLink: React.FC<CustomNavLinkProps> = ({text, link, onClick, class
     window.scroll(0, 0)
   }
 
+  const isActive = currentPath === link || currentPath.startsWith(`${link}/`);
+
   return (
-    <li><button onClick={handleClick} className={`${className} hover:text-cta ${currentPath === link ? 'text-cta' : 'text-white'}`}>{text}</button></li>
+    <li><button onClick={handleClick} className={`${className} hover:text-cta ${isActive ? 'text-cta' : 'text-white'}`}>{text}</button></li>
   );
 };
 

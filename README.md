@@ -1,11 +1,9 @@
 
 ## TODO
 # in order
-- stop form from getting spamed
-- remove debug tools
-- fix nav bar showing when navigate through footer
-- fix nav dropdown menu to highlight contact us when dynamicly routing
 - clean up services to use a unified type 
-
-
-# when mat comes back
+- remove debug tools
+- stop form from getting spamed
+- make footer full width
+- make arrow maller and not above the lines
+- change mobile number on contact form
