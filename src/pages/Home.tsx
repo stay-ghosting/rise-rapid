@@ -51,7 +51,7 @@ const services: [string, string, string][] = [
   [
     "Copywriting",
     `At Rise Rapid, we craft compelling and clear copy that communicates your brand’s message effectively. Our skilled team creates engaging content for websites, blogs, and marketing materials, tailored to resonate with your target audience.<br /><br /> From persuasive product descriptions to informative articles, we ensure every word aligns with your brand’s voice and drives meaningful results.`,
-    `Give your brand a personality that ressonates with customers .`,
+    `Give your brand a unique personality.`,
   ],
 ];
 
@@ -89,7 +89,7 @@ const Home = () => {
             <div className=''>
               <h1 className='mb-[4rem] inline'>
                 Website Design <br />
-                To Make <span className='text-cta inline-block'>Your Brand</span> <br />
+                To Make <span className='text-cta inline-block border-b-2 border-cta leading-[4rem]'>Your Brand</span> <br />
                 Rise Rapid
               </h1>
               <div className='mt-[3rem]'>
@@ -100,8 +100,8 @@ const Home = () => {
               <img className='md:scale-[170%] top-[3rem] left-[7rem] md:absolute' src={image_Hero} alt='hero image' />
             </div>
           </div>
-          <div className='hidden md:flex flex-row justify-center mt-[5rem]' onClick={scroll}>
-            <div className='z-10' onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
+          <div className='hidden md:flex flex-row justify-center mt-[5rem]' >
+            <div className='z-10 scale-90 hover:scale-100 transition-all cursor-pointer' onClick={scroll} onMouseEnter={() => setIsScrollButtonHovered(true)} onMouseLeave={() => setIsScrollButtonHovered(false)}>
               <img className='' src={isScrollButtonHovered ? icon_arrow : icon_arrow_dark} />
             </div>
           </div>
@@ -114,16 +114,15 @@ const Home = () => {
         </h2>
         <div className='grid md:grid-cols-3 gap-[1rem]'>
           {services.map(([title, description, shortDescription], index) => (
-            <div
-              key={index}
-              className={`${isServicesInView ? "fade-right" : "fade-in-hidden"} 
-              overflow-hidden p-[1rem] min-h-[15rem] bg-card rotate-45`}
-              style={{ animationDelay: `${0}ms` }}
-            >
-              <img className='absolute bottom-0 -right-[3rem] rounded-lg -z-10 w-[17rem]' src={image_servicesColorSplash} />
-              <img className='brightness-[0.8] absolute bottom-[0.75rem] right-[1.5rem] rounded-lg -z-10 w-[2rem] ' src={icon_arrowRight} />
-              <p className={` text-white font-semibold text-left`}>{title}</p>
-              <p>{shortDescription}</p>
+            <div key={index} className={`${isServicesInView ? "fade-right" : "fade-in-hidden "} relative hover:z-30`} style={{ animationDelay: `${0}ms` }}>
+              <div className='service-card relative  bg-card p-[1rem] min-h-[15rem] overflow-hidden'>
+                <img className='shape absolute bottom-0 z-10 -right-[3rem] rounded-lg w-[17rem]' src={image_servicesColorSplash} />
+                <img className='brightness-[0.8] absolute bottom-[0.75rem] right-[1.5rem] rounded-lg z-20  w-[2rem] ' src={icon_arrowRight} />
+                <div className="relative z-20">
+                  <p className={` text-white font-semibold text-left`}>{title}</p>
+                  <p>{shortDescription}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

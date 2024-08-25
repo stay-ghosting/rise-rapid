@@ -82,11 +82,7 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               About you...
             </h3>
             {fields.slice(0, 3).map(({ id, name, placeholder, type, autoComplete }, index) => (
-              <div
-                key={id}
-                className={`${inView ? "fade-right" : "fade-in-hidden"}`}
-                style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}
-              >
+              <div key={id} className={`${inView ? "fade-right" : "fade-in-hidden"}`} style={{ animationDelay: `${800 + Math.floor(index) * 200}ms` }}>
                 {id === "service" ? (
                   <div className=''>
                     <Dropdown id={id} name={name} placeholder={placeholder} options={services} setFieldValue={(value) => handleInputChange("service", value)} inView={inView} />
@@ -169,7 +165,12 @@ const GetInTouchSection: React.FC<FileNameProps> = ({ inView = true }) => {
               <CustomCheckbox id={"is-Subscribed"} name={"isSubscribed"} onChange={(name) => handleCheckboxChange(name as keyof FormData)} checked={formData.isSubscribed} />
               <p className='inline ml-[1rem] text-[2rem] sm:text-[1.25rem]'>Subscribe to our newsletter</p>
             </div>
-            <input className=' m-auto bg-cta h-[6rem] sm:h-14 w-60 inline px-9 rounded-md shadow-xl shadow-shaddow text-white font-semibold' type='submit' value='Send' />
+            <button className=' m-auto bg-cta hover:bg-cta-hover h-[6rem] sm:h-14 w-60 flex items-center justify-center px-9 rounded-md shadow-xl shadow-shaddow text-white font-semibold' type='submit'>
+              Send
+              <div className='inline-block  overflow-hidden arrow'>
+                <span className='text-[2em] '>⭢</span>
+              </div>
+            </button>
           </div>
         </div>
       </form>

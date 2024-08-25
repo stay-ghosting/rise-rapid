@@ -101,3 +101,32 @@ input, select, button, a, .input {
 .tab-gradient {
   background: linear-gradient(to right, #45086F 80%, #202020 100%);
 }
+
+.service-card {
+  transition: transform 300ms ease-in-out;
+}
+
+.service-card:hover {
+  transform: scale(1.1);
+}
+
+.service-card:hover .shape {
+  transform: scale(500%);
+}
+
+.shape {
+  transition: all 300ms ease-in-out;
+  transform: scale(100%);
+  transform-origin: bottom right;
+}
+
+.arrow {
+  width: 0;
+  transition: width 300ms ease-out;
+}
+
+
+button:hover > .arrow {
+  width: 2em;
+}
+
