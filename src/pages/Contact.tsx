@@ -8,7 +8,7 @@ import ResponsiveSection from "../sections/ResponsiveSection";
 const services: [string, string, string][] = [
   [
     "Bespoke Web Design",
-    `At Rise Rapid, we craft tailored websites that reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
+    `At Rise Rapid, we craft tailor your website to reflect your unique brand identity and goals. Our team works closely with you to understand your vision, ensuring every detail aligns with your needs.<br /><br /> From concept to creation, we deliver custom designs that stand out and drive results.`,
     "bespokeWebDesign",
   ],
   [
