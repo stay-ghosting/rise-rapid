@@ -16,14 +16,14 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ id, name, checked, onCh
         name={name}
         checked={checked}
         onChange={() => onChange(name)}
-        className='hidden'
+        className=''
       />
       
-      <label
+      {/* <label
         htmlFor={id}
         className={`w-[1rem] h-[1rem] ${checked ? "bg-cta" :  "bg-white"} rounded-sm`}
       >
-      </label>      
+      </label>       */}
     </div>
   );
 };
