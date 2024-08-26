@@ -77,7 +77,6 @@ const Navbar = () => {
             <CustomNavLink
               className={`border-[#303030] p-[1rem] w-full hover:bg-[#303030] ${index !== navLinks.length - 1 ? "border-b" : ""}`}
               onClick={() => {
-                console.log("this ran");
                 setIsOpen(false);
               }}
               key={link}

@@ -20,7 +20,6 @@ const FAQDropdown: React.FC<FAQProps> = ({ title, answer, inView, index }) => {
       setHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, height]);
-  console.log(height);
 
   const animationDelay = index * 100 + 300;
 
