@@ -92,7 +92,7 @@ const Home = () => {
       </div>
       {/* sevices */}
       <ResponsiveSection>
-        <h2 ref={servicesRef} className={`${isServicesInView ? "fade-in" : "fade-in-hidden"} mt-[12rem]`}>
+        <h2 ref={servicesRef} className={`${isServicesInView ? "fade-right" : "fade-in-hidden"} mt-[12rem]`}>
           <span className='text-cta'>Services</span> we offer
         </h2>
         <div className='grid md:grid-cols-3 gap-[1rem]'>
